@@ -15,6 +15,10 @@
     h1 {
         text-align: center;
     }
+
+    body {
+        font-size: 1.5em;
+    }
 </style>
 
 <body>
