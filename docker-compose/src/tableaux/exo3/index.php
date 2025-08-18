@@ -17,8 +17,8 @@ require_once "assets/products.php";
 
     <button class="mx-3"><a href="../../index.php">Retour</a></button>
 
-
-    <h1 class="text-center">Liste des articles</h1>
+    <h1 class="text-center">Exercice 3</h1>
+    <h2 class="text-center">Liste des articles</h2>
 
     <div class="d-flex flex-wrap justify-content-center" id="container-card">
 
@@ -29,12 +29,12 @@ require_once "assets/products.php";
 
 
             <div class="card m-3" style="width: 18rem;">
-                <img src="<?= htmlspecialchars($value['image']) ?>" class="" alt="<?= htmlspecialchars($value['nom']) ?>" style="height: 18rem">
+                <img src="<?= $value['image'] ?>" class="" alt="<?= $value['nom'] ?>" style="height: 18rem">
                 <div class="card-body">
-                    <h5 class="card-text"><?= htmlspecialchars($value['categorie']) ?></h5>
-                    <h3 class="card-title"><?= htmlspecialchars($value['nom']) ?></h3>
-                    <p class="card-text"><?= htmlspecialchars($value['description']) ?></p>
-                    <p class="card-text"><?= number_format($value['prix'], 2, ',', ' ') ?> €</p>
+                    <h5 class="card-text"><?= $value['categorie'] ?></h5>
+                    <h3 class="card-title"><?= $value['nom'] ?></h3>
+                    <p class="card-text"><?= $value['description'] ?></p>
+                    <p class="card-text"><b><?= number_format($value['prix'], 2, ',', ' ') ?> €</b></p>
                 </div>
             </div>
 
