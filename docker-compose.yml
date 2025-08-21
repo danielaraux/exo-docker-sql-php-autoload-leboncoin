@@ -1,7 +1,7 @@
 services:
   web:
     image: php:8.2-apache
-    container_name: php-apache-training
+    container_name: php-apache-session
     build:
       context: .
       dockerfile: Dockerfile
@@ -23,7 +23,7 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile.mysql
-    container_name: mysql-db-training
+    container_name: mysql-db-session
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -38,7 +38,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin-training
+    container_name: phpmyadmin-session
     depends_on:
       - db
     ports:
