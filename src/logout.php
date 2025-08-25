@@ -4,7 +4,7 @@
 session_start();
 
 // Pour vider la session
-$_SESSION = [];
+session_unset();
 
 // Pour détruire la session
 session_destroy();

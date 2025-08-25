@@ -38,6 +38,24 @@ nav {
     }
 }
 
+
+.class-admin {
+    color: red;
+    border: 5px solid red;
+}
+
+.class-user {
+    color: lightblue;
+    border: 2px solid white;
+}
+
+
+.admin-class {
+    color: red;
+}
+
+
+
 footer {
     background-color: white;
 }
@@ -47,6 +65,13 @@ footer {
         margin: 0.8em;
     }
 }
+
+
+
+
+
+
+
 
 .nav-link-hover {
     color: white;

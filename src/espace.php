@@ -1,5 +1,6 @@
 <?php
 
+
 session_start();
 
 // Condition pour retourner à la page de connexion si on lance la page sans s'être connecté
@@ -39,6 +40,7 @@ $userRole = $_SESSION['user']['role'];
 
 
 
+                <!-- Version avec les liens sur la navbar -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Liens à gauche -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -48,6 +50,8 @@ $userRole = $_SESSION['user']['role'];
                         <li class="nav-item m-2">
                             <a href="#" class="nav-link-hover">Consulter mes rendez-vous</a>
                         </li>
+
+                        <!-- Condition admin -->
                         <?php if ($userRole === 'admin') : ?>
                             <li class="nav-item m-2">
                                 <a href="#" class="nav-link-hover">Gérer les utilisateurs</a>
@@ -55,7 +59,16 @@ $userRole = $_SESSION['user']['role'];
                             <li class="nav-item m-2">
                                 <a href="#" class="nav-link-hover">Gérer les rendez-vous</a>
                             </li>
+
+                            <div class="<?= $userRole == "admin" ? "class-admin" : "class-user"  ?>">TEST DU ROLE</div>
+
                         <?php endif; ?>
+
+
+
+
+                        <!-- Ajout du CSS -->
+
                     </ul>
 
                     <!-- Liens à droite Bouton déconnexion pas bien en place côté mobile -->
@@ -68,22 +81,68 @@ $userRole = $_SESSION['user']['role'];
             </div>
         </nav>
 
-
-
-
-
-
-
     </header>
 
-    <main>
+    <main class="container min-vh-100">
 
         <h1 class="text-center fs-2 m-3">Page espace session</h1>
+
+        <div class="row justify-content-center">
+
+            <div class="card col-2 m-4" style="width: 25rem;">
+                <img src="assets/img/logo.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Prendre un rendez-vous</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+                    <a href="#" class="btn btn-primary w-100">Prendre un rendez-vous</a>
+                </div>
+            </div>
+
+
+
+            <div class="card col-2 m-4" style="width: 25rem;">
+                <img src="assets/img/logo.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Consulter mes rendez-vous</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+                    <a href="#" class="btn btn-danger w-100">Consulter mes rendez-vous</a>
+                </div>
+            </div>
+
+            <!-- Condition admin -->
+            <?php if ($userRole === 'admin') : ?>
+
+                <div class="card col-2 m-4" style="width: 25rem;">
+                    <img src="assets/img/logo.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Gérer les utilisateurs</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+                        <a href="#" class="btn btn-success w-100">Gérer les utilisateurs</a>
+                    </div>
+                </div>
+
+
+                <div class="card col-2 m-4" style="width: 25rem;">
+                    <img src="assets/img/logo.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Gérer les rendez-vous</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+                        <a href="#" class="btn btn-warning w-100">Gérer les rendez-vous</a>
+                    </div>
+                </div>
+
+
+
+            <?php endif; ?>
+
+
+
+        </div>
 
     </main>
 
 
-    <footer class="pb-3 fixed-bottom">
+    <footer class="pb-3 ">
         <hr class="w-75 mx-auto">
         <div class="d-block d-lg-flex justify-content-lg-around align-items-lg-center">
             <div class="text-center">
