@@ -13,9 +13,6 @@
     <div>Exo 1 : Objectif :
         Créer une fonction qui affiche un message de bienvenue.</div>
 
-
-
-
     <!-- Un return il faut faire un echo court dans le html puis appeler la fonction, sinon si il n'y en a pas et qu'il y a un écho dans la fonction, il faut laisser le echo dans la fonction et juste appeler la fonction directement dans l'html -->
     <?php
 
@@ -89,6 +86,23 @@
     }
     ?>
     <p><?= somme(3, 4) ?></p>
+    <hr>
+
+    <div>Exo 6 : Objectif :
+        Comparer deux nombres et retourner le plus grand.</div>
+    <?php
+
+    // Fonction maximum (On peut le faire en echo, comme en return)
+    function maximum($a, $b)
+    {
+        if ($a > $b) {
+            echo "Le nombre le plus grand entre $a et $b, est $a";
+        } else {
+            echo "Le nombre le plus grand entre $a et $b, est $b";
+        }
+    }
+    ?>
+    <p><?= maximum(4, 6) ?></p>
     <hr>
 
 
