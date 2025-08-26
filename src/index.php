@@ -105,6 +105,36 @@
     <p><?= maximum(4, 6) ?></p>
     <hr>
 
+    <div>Exo 6bis Objectif :
+        Comparer deux nombres et retourner le plus grand.</div>
+    <?php
+
+    // Fonction maximumMulti (On peut le faire en echo, comme en return)
+    // On peut aussi faire maximumMulti($a, $b, $c, $d) et echo "Le plus grand nombre entre $a, $b, $c, $d est " . (max($a, $b, $c, $d));
+    function maximumMulti(...$allNumbers)
+    {
+        echo "Le plus grand nombre est " . (max(...$allNumbers));
+    }
+    ?>
+    <p><?= maximumMulti(10, 4, 6, 8, 45, 25, 39) ?></p>
+    <hr>
+
+
+    <div>Exo 7 Objectif :
+        Trouver la longueur d’un texte.</div>
+    <?php
+
+
+    function longueur($string)
+    {
+        echo "Le nombre de lettres dans le mot est de " . strlen($string);
+    }
+    ?>
+    <p><?= longueur("Anticonstitutionnellement") ?></p>
+    <hr>
+
+    <!-- Pour les exercices 6bis et 7, ne pas utiliser de fonction avec une fonction native de php telles qu'utilisées car on utilise deux fonctions alors qu'on pourrait juste utiliser la fonction native de php -->
+
 
 </body>
 
