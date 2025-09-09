@@ -1,7 +1,7 @@
 services:
   web:
     image: php:8.2-apache
-    container_name: php-apache-fonctions-php
+    container_name: php-apache-sql-php-autoload-leboncoin
     build:
       context: .
       dockerfile: Dockerfile
@@ -23,7 +23,7 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile.mysql
-    container_name: mysql-db-fonctions-php
+    container_name: mysql-db-sql-php-autoload-leboncoin
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -38,7 +38,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin-fonctions-php
+    container_name: phpmyadmin-sql-php-autoload-leboncoin
     depends_on:
       - db
     ports:
@@ -46,7 +46,7 @@ services:
     environment:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: root
-      UPLOAD_LIMIT: 64M 
+      UPLOAD_LIMIT: 64M
     networks:
       - app-network
 
