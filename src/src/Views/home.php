@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home-LeBonCoin-Like</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="/../src/assets/css/style.css">
+    <link rel="stylesheet" href="/src/public/assets/css/style.css">
 </head>
 
 <body>
@@ -23,7 +23,6 @@
     </header>
 
     <main class="min-vh-100">
-
 
         <!-- <div class="container my-5 ">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
