@@ -23,16 +23,7 @@
     </header>
 
     <main class="min-vh-100">
-
-        <!-- <div class="container my-5 ">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
-               
-            </div>
-        </div>
-
-        <div class="d-flex justify-content-end m-3">
-            <a href="#" class="btn btn-primary">Revenir en haut</a>
-        </div> -->
+        <h2>Bienvenue Homer !</h2>
 
     </main>
 

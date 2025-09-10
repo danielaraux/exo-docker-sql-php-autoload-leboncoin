@@ -8,50 +8,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home-LeBonCoin-Like</title>
+    <title>Le Bon CoinCoin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="/src/public/assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
     <header>
-        <nav>
-            <div class="text-center bg-dark text-light py-2">
-                <h1>Home-LeBonCoin-Like</h1>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+
+                <h1>Le Bon CoinCoin</h1>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.php"><b>Home</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.php?url=register"><b>S'inscrire</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.php?url=login"><b>Se connecter</b></a>
+                        </li>
+
+                    </ul>
+                </div>
+
             </div>
         </nav>
     </header>
 
+
     <main class="min-vh-100 container">
+        <div class="card mx-auto p-3 my-4">
 
-        <form action="" method="post" class="w-50 mx-auto">
+            <h2 class="text-center">Formulaire d'inscription</h2>
+            <form action="" method="post" class="form-container mx-auto my-4">
 
-            <!-- EMAIL -->
-            <div class="mb-3">
-                <label for="email" class="form-label">
-                    Adresse email : <span class="text-danger">*</span>
-                </label>
-                <input type="email" name="email" class="form-control" id="email" placeholder="Entrez votre adresse email..." required>
-            </div>
+                <!-- EMAIL -->
+                <div class="mb-3">
+                    <label for="email" class="form-label">
+                        <b>Adresse email : </b><span class="text-danger">* <i><?= isset($errors['email']) ? htmlspecialchars($errors['email']) : '' ?></i></span>
+                    </label>
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Entrez votre adresse email...">
+                </div>
 
-            <!-- PASSWORD -->
-            <div class="mb-3">
-                <label for="password" class="form-label">
-                    Mot de passe : <span class="text-danger">*</span>
-                </label>
-                <input type="password" name="password" class="form-control" id="password" placeholder="Entrez votre mot de passe..." required>
-            </div>
+                <!-- PASSWORD -->
+                <div class="mb-3">
+                    <label for="password" class="form-label">
+                        <b>Mot de passe : </b><span class="text-danger">* <i><?= isset($errors['password']) ? htmlspecialchars($errors['password']) : '' ?></i></span>
+                    </label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Entrez votre mot de passe...">
+                </div>
 
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary">Se connecter</button>
-            </div>
-        </form>
-
+            </form>
+        </div>
     </main>
 
-    <footer class="text-center bg-dark text-light py-2">
+
+    <footer class="text-center py-2">
         <div>
-            <h1>Home-LeBonCoin-Like</h1>
+            <h1>Le Bon CoinCoin</h1>
         </div>
     </footer>
 
