@@ -2,6 +2,8 @@
 
 // On va chercher les namespace qui pointent sur les classes qu'on veut utiliser. (Plus besoin d'utiliser les require_once sur les case des switch).
 use App\Controllers\HomeController;
+use App\Controllers\UserController;
+use App\Controllers\AnnonceController;
 
 
 $url = $_GET['url'] ?? 'home'; // on défini la variable qui va récupérer l'url de l'index sinon, pointer sur home

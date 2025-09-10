@@ -1,5 +1,19 @@
 <?php
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
+    // Vérification de la confirmation du mot de passe
+    $password = $_POST["password"];
+    $passwordConfirm = $_POST["passwordConfirm"];
+
+    if ($password !== $passwordConfirm) {
+        $errors['passwordConfirm'] = "Les mots de passe ne correspondent pas.";
+    }
+
+    if (empty($errors)) {
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+        header("Location: index.php?url=login");
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -8,37 +22,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home-LeBonCoin-Like</title>
+    <title>Le Bon CoinCoin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="/src/public/assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
     <header>
-        <nav>
-            <div class="text-center bg-dark text-light py-2">
-                <h1>Home-LeBonCoin-Like</h1>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+
+                <h1>Le Bon CoinCoin</h1>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.php?url=register">S'inscrire</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.php?url=login">Se connecter</a>
+                        </li>
+
+                    </ul>
+                </div>
+
             </div>
         </nav>
     </header>
 
-    <main class="min-vh-100">
 
-        <!-- <div class="container my-5 ">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
-               
-            </div>
+    <main class="min-vh-100 container">
+
+        <div class="card mx-auto p-3 my-4">
+
+            <h2 class="text-center">Formulaire d'inscription</h2>
+            <form action="" method="post" class="form-container mx-auto my-4">
+
+                <!-- USERNAME -->
+                <div class="mb-3">
+                    <label for="username" class="form-label">
+                        <b>Nom d'utilisateur : </b><span class="text-danger">*</span>
+                    </label>
+                    <input type="text" name="username" class="form-control" id="username" placeholder="Entrez votre nom d'utilisateur..." required>
+                </div>
+
+                <!-- EMAIL -->
+                <div class="mb-3">
+                    <label for="email" class="form-label">
+                        <b>Adresse email : </b><span class="text-danger">*</span>
+                    </label>
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Entrez votre adresse email..." required>
+                </div>
+
+                <!-- PASSWORD -->
+                <div class="mb-3">
+                    <label for="password" class="form-label">
+                        <b>Mot de passe : </b><span class="text-danger">*</span>
+                    </label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Entrez votre mot de passe..." required>
+                </div>
+
+                <!--CONFIRM PASSWORD -->
+                <div class="mb-3">
+                    <label for="password" class="form-label">
+
+                        <!-- Si passwordConfirm existe dans $errors, alors ça affiche le contenu de $errors, sinon on affiche rien -->
+                        <b>Confirmation du Mot de passe : </b><span class="text-danger">* <?= isset($errors['passwordConfirm']) ? htmlspecialchars($errors['passwordConfirm']) : '' ?>
+                            <span>
+                    </label>
+                    <input type="password" name="passwordConfirm" class="form-control" id="passwordConfirm" placeholder="Confirmez votre mot de passe..." required>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input type="checkbox" name="cgu" class="form-check-input" id="exampleCheck1" required>
+                    <label class="form-check-label cgu" for="exampleCheck1">
+                        <b>J'accepte les CGU</b> <span class="text-danger">*</span>
+                    </label>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">S'inscrire</button>
+                </div>
+            </form>
         </div>
-
-        <div class="d-flex justify-content-end m-3">
-            <a href="#" class="btn btn-primary">Revenir en haut</a>
-        </div> -->
-
     </main>
+
 
     <footer class="text-center bg-dark text-light py-2">
         <div>
-            <h1>Home-LeBonCoin-Like</h1>
+            <h1>Le Bon CoinCoin</h1>
         </div>
     </footer>
 

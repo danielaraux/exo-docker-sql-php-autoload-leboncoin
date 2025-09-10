@@ -8,23 +8,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home-LeBonCoin-Like</title>
+    <title>Le Bon CoinCoin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="/src/public/assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
     <header>
-        <nav>
-            <div class="text-center bg-dark text-light py-2">
-                <h1>Home-LeBonCoin-Like</h1>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+
+                <h1>Le Bon CoinCoin</h1>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.php?url=register">S'inscrire</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.php?url=login">Se connecter</a>
+                        </li>
+
+                    </ul>
+                </div>
+
             </div>
         </nav>
     </header>
 
-    <main class="min-vh-100">
+    <main class="min-vh-100 container border">
 
-        <h1>Bonjour</h1>
+        <h2 class="text-center my-4">Bienvenue sur Le Bon CoinCoin</h2>
+
+
 
         <!-- <div class="container my-5 ">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
@@ -40,7 +62,7 @@
 
     <footer class="text-center bg-dark text-light py-2">
         <div>
-            <h1>Home-LeBonCoin-Like</h1>
+            <h1>Le Bon CoinCoin</h1>
         </div>
     </footer>
 

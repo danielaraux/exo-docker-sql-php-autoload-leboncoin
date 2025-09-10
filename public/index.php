@@ -6,7 +6,3 @@ session_start();
 // On va utiliser le router pour piloter nos actions.
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/routeur.php';
-
-
-// Test de l'affichage
-// require_once 'src/src/Views/home.php';
