@@ -10,37 +10,3 @@ h1 {
         width: 100%;
     }
 }
-
-
-/* Fond de la navbar en noir */
-.navbar {
-    background-color: black !important;
-}
-
-/* h1 en orange */
-.navbar h1 {
-    color: orange;
-    margin-right: 20px;
-    /* pour espacer du menu */
-}
-
-/* Liens du menu en blanc */
-.navbar .nav-link {
-    color: white !important;
-}
-
-/* Au survol des liens */
-.navbar .nav-link:hover {
-    color: orange !important;
-}
-
-/* Bouton burger blanc */
-.navbar-toggler {
-    border-color: white;
-    /* bordure blanche */
-}
-
-.navbar-toggler-icon {
-    filter: invert(1);
-    /* transforme l'icône en blanc */
-}

@@ -26,13 +26,13 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                            <a class="nav-link active" aria-current="page" href="index.php"><b>Home</b></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php?url=register">S'inscrire</a>
+                            <a class="nav-link active" aria-current="page" href="index.php?url=register"><b>S'inscrire</b></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php?url=login">Se connecter</a>
+                            <a class="nav-link active" aria-current="page" href="index.php?url=login"><b>Se connecter</b></a>
                         </li>
 
                     </ul>
@@ -60,7 +60,7 @@
 
     </main>
 
-    <footer class="text-center bg-dark text-light py-2">
+    <footer class="text-center py-2">
         <div>
             <h1>Le Bon CoinCoin</h1>
         </div>

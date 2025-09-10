@@ -1,17 +1,75 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    // Vérification de la confirmation du mot de passe
-    $password = $_POST["password"];
-    $passwordConfirm = $_POST["passwordConfirm"];
+    $errors = [];
 
-    if ($password !== $passwordConfirm) {
-        $errors['passwordConfirm'] = "Les mots de passe ne correspondent pas.";
+    // création de la regex
+    $regName = "/^[a-zA-Zàèé\-]+$/";
+
+    // VERIFICATION USERNAME
+    if (isset($_POST['username'])) {
+
+        // On va vérifier si c'est vide
+        if (empty($_POST['username'])) {
+
+            // Si c'est vide, on le stocke dans notre tableau
+            $errors['username'] = "Nom d'utilisateur obligatoire";
+
+            // Sinon si ça ne respecte pas le regex, alors on stocke caractères non autorisés
+        } else if (!preg_match($regName, $_POST['username'])) {
+            $errors['username'] = 'Caractères non autorisés';
+        }
     }
 
+    // VERIFICATION DE L'EMAIL
+    if (isset($_POST['email'])) {
+
+        if (empty($_POST['email'])) {
+
+            $errors['email'] = 'Email obligatoire';
+
+            // Sinon si 
+        } else if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+
+            // Si mail non valide, on crée une erreur
+            $errors['email'] = 'Email non valide';
+        }
+    }
+
+    // VERIFICATION DU MOT DE PASSE
+    if (isset($_POST['password'])) {
+
+        if (strlen($_POST['password']) < 8) {
+            $errors['password'] = 'Le mot de passe doit contenir au minimum 8 caractères';
+        }
+    }
+
+    // VERIFICATION DU MOT DE PASSE CONFIRME
+    if (isset($_POST['passwordConfirm'])) {
+
+        if (empty($_POST['passwordConfirm'])) {
+
+            $errors['passwordConfirm'] = 'Veuillez confirmer le mot de passe';
+        }
+
+        if ($_POST['password'] !== $_POST['passwordConfirm']) {
+            $errors['passwordConfirm'] = "Les mots de passe ne correspondent pas.";
+        }
+        if (empty($errors['password']) && empty($errors['passwordConfirm'])) {
+            $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        }
+    }
+
+    // VERIFICATION DU CGU
+    if (!isset($_POST['cgu'])) {
+        // Si c'est vide, on stocke dans notre tableau le message d'erreur pour l'afficher en html ensuite
+        $errors['cgu'] = 'Validation des CGU obligatoire';
+    }
+
+    // VERIFICATION DES ERREURS
+    // Si pas d'erreurs, alors redirige vers confirmation.php
     if (empty($errors)) {
-        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-        header("Location: index.php?url=login");
+        header("Location: index.php?url=login" . $_POST['email']);
     }
 }
 ?>
@@ -40,13 +98,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                            <a class="nav-link active" aria-current="page" href="index.php"><b>Home</b></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php?url=register">S'inscrire</a>
+                            <a class="nav-link active" aria-current="page" href="index.php?url=register"><b>S'inscrire</b></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php?url=login">Se connecter</a>
+                            <a class="nav-link active" aria-current="page" href="index.php?url=login"><b>Se connecter</b></a>
                         </li>
 
                     </ul>
@@ -58,7 +116,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
     <main class="min-vh-100 container">
-
         <div class="card mx-auto p-3 my-4">
 
             <h2 class="text-center">Formulaire d'inscription</h2>
@@ -67,25 +124,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <!-- USERNAME -->
                 <div class="mb-3">
                     <label for="username" class="form-label">
-                        <b>Nom d'utilisateur : </b><span class="text-danger">*</span>
+                        <b>Nom d'utilisateur : </b><span class="text-danger">* <i><?= isset($errors['username']) ? htmlspecialchars($errors['username']) : '' ?></i></span>
                     </label>
-                    <input type="text" name="username" class="form-control" id="username" placeholder="Entrez votre nom d'utilisateur..." required>
+                    <input type="text" name="username" class="form-control" id="username" placeholder="Entrez votre nom d'utilisateur...">
                 </div>
 
                 <!-- EMAIL -->
                 <div class="mb-3">
                     <label for="email" class="form-label">
-                        <b>Adresse email : </b><span class="text-danger">*</span>
+                        <b>Adresse email : </b><span class="text-danger">* <i><?= isset($errors['email']) ? htmlspecialchars($errors['email']) : '' ?></i></span>
                     </label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="Entrez votre adresse email..." required>
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Entrez votre adresse email...">
                 </div>
 
                 <!-- PASSWORD -->
                 <div class="mb-3">
                     <label for="password" class="form-label">
-                        <b>Mot de passe : </b><span class="text-danger">*</span>
+                        <b>Mot de passe : </b><span class="text-danger">* <i><?= isset($errors['password']) ? htmlspecialchars($errors['password']) : '' ?></i></span>
                     </label>
-                    <input type="password" name="password" class="form-control" id="password" placeholder="Entrez votre mot de passe..." required>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Entrez votre mot de passe...">
                 </div>
 
                 <!--CONFIRM PASSWORD -->
@@ -93,28 +150,30 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <label for="password" class="form-label">
 
                         <!-- Si passwordConfirm existe dans $errors, alors ça affiche le contenu de $errors, sinon on affiche rien -->
-                        <b>Confirmation du Mot de passe : </b><span class="text-danger">* <?= isset($errors['passwordConfirm']) ? htmlspecialchars($errors['passwordConfirm']) : '' ?>
+                        <b>Confirmation du Mot de passe : </b><span class="text-danger">* <i><?= isset($errors['passwordConfirm']) ? htmlspecialchars($errors['passwordConfirm']) : '' ?></i>
                             <span>
                     </label>
-                    <input type="password" name="passwordConfirm" class="form-control" id="passwordConfirm" placeholder="Confirmez votre mot de passe..." required>
+                    <input type="password" name="passwordConfirm" class="form-control" id="passwordConfirm" placeholder="Confirmez votre mot de passe...">
                 </div>
 
+                <!-- CGU -->
                 <div class="form-check mb-3">
-                    <input type="checkbox" name="cgu" class="form-check-input" id="exampleCheck1" required>
+                    <input type="checkbox" name="cgu" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label cgu" for="exampleCheck1">
-                        <b>J'accepte les CGU</b> <span class="text-danger">*</span>
+                        <b>J'accepte les CGU</b> <span class="text-danger">* <i><?= isset($errors['cgu']) ? htmlspecialchars($errors['cgu']) : '' ?></i></span>
                     </label>
                 </div>
-
-                <div class="text-center">
+                <div class="text-danger">* Champs obligatoires</div>
+                <div class="text-center mt-5">
                     <button type="submit" class="btn btn-primary">S'inscrire</button>
                 </div>
+
             </form>
         </div>
     </main>
 
 
-    <footer class="text-center bg-dark text-light py-2">
+    <footer class="text-center py-2">
         <div>
             <h1>Le Bon CoinCoin</h1>
         </div>
