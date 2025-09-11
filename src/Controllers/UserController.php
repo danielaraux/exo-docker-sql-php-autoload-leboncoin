@@ -9,6 +9,8 @@ namespace App\Controllers;
 
 class UserController
 {
+
+    // FONCTION QUI S'EXECUTE SUR LA VUE DU FORMULAIRE
     public function register()
     {
 
@@ -68,9 +70,9 @@ class UserController
                 if ($_POST['password'] !== $_POST['passwordConfirm']) {
                     $errors['passwordConfirm'] = "Les mots de passe ne correspondent pas.";
                 }
-                if (empty($errors['password']) && empty($errors['passwordConfirm'])) {
-                    $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                }
+                // if (empty($errors['password']) && empty($errors['passwordConfirm'])) {
+                //     $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                // }
             }
 
             // VERIFICATION DU CGU
@@ -85,6 +87,7 @@ class UserController
                 header("Location: index.php?url=profil");
             }
         }
+
 
         require_once __DIR__ . '/../Views/register.php'; // On appelle la vue Register
     }

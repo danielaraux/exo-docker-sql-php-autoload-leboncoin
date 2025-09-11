@@ -46,7 +46,7 @@
     <main class="min-vh-100 container">
         <div class="card mx-auto p-3 my-4">
 
-            <h2 class="text-center">Formulaire d'inscription</h2>
+            <h2 class="text-center">Se connecter</h2>
             <form action="" method="post" class="form-container mx-auto my-4">
 
                 <!-- EMAIL -->
