@@ -54,7 +54,7 @@
                     <label for="username" class="form-label">
                         <b>Nom d'utilisateur : </b><span class="text-danger">* <i><?= isset($errors['username']) ? htmlspecialchars($errors['username']) : '' ?></i></span>
                     </label>
-                    <input type="text" name="username" class="form-control" id="username" placeholder="Entrez votre nom d'utilisateur...">
+                    <input type="text" name="username" class="form-control" id="username" placeholder="Entrez votre nom d'utilisateur..." value="<?= $_POST['username'] ?? "" ?>">
                 </div>
 
                 <!-- EMAIL -->
@@ -62,7 +62,7 @@
                     <label for="email" class="form-label">
                         <b>Adresse email : </b><span class="text-danger">* <i><?= isset($errors['email']) ? htmlspecialchars($errors['email']) : '' ?></i></span>
                     </label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="Entrez votre adresse email...">
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Entrez votre adresse email..." value="<?= $_POST['email'] ?? "" ?>">
                 </div>
 
                 <!-- PASSWORD -->
@@ -86,7 +86,7 @@
 
                 <!-- CGU -->
                 <div class="form-check mb-3">
-                    <input type="checkbox" name="cgu" class="form-check-input" id="exampleCheck1">
+                    <input type="checkbox" name="cgu" class="form-check-input" id="exampleCheck1" value="<?= $_POST['cgu'] ?? "" ?>">
                     <label class="form-check-label cgu" for="exampleCheck1">
                         <b>J'accepte les CGU</b> <span class="text-danger">* <i><?= isset($errors['cgu']) ? htmlspecialchars($errors['cgu']) : '' ?></i></span>
                     </label>
