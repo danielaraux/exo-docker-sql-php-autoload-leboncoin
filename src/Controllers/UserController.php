@@ -19,7 +19,7 @@ class UserController
             $errors = [];
 
             // Création de la regex
-            $regName = "/^[a-zA-Zàèé\-]+$/";
+            $regName = "/^[a-zA-Z0-9àèé\-_]+$/";
 
             // VERIFICATION USERNAME
             if (isset($_POST['username'])) {
@@ -55,7 +55,7 @@ class UserController
             if (isset($_POST['password'])) {
 
                 if (strlen($_POST['password']) < 8) {
-                    $errors['password'] = 'Le mot de passe doit contenir au minimum 8 caractères';
+                    $errors['password'] = 'Le mot de passe doit contenir entre 8 et 64 caractères';
                 }
             }
 
@@ -90,14 +90,5 @@ class UserController
 
 
         require_once __DIR__ . '/../Views/register.php'; // On appelle la vue Register
-    }
-
-    public function login()
-    {
-
-
-
-
-        require_once __DIR__ . '/../Views/login.php';
     }
 }

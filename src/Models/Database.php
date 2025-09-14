@@ -7,25 +7,29 @@ use PDOException;
 
 class Database
 {
-
-    public static function createInstancePDO()
+    /**
+     * Permet de créer une instance de PDO
+     * @return object Instance PDO ou Null
+     */
+    public static function createInstancePDO(): ?PDO
     {
-
-        $servername = "db"; // elle s'appelle db dans notre docker compose
-        $username = "root";
-        $password = "root";
-        $dbname = "leboncoin";
+        // on déclare des variables : il s'agit des paramètres de notre container docker
+        $db_host = 'db';
+        $db_name = 'leboncoin';
+        $db_user = 'root';
+        $db_password = 'root';
 
         try {
-            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-            // set the PDO error mode to exception
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Connected successfully";
-            $sql = "INSERT INTO users (u_email, u_password, u_username, u_inscription)
-    VALUES ('homer.simpson@lol.com', 'Donut123', 'Dooh', '25-09-09')";
-            echo 'User created successfully';
+            // j'utilise les variables plus haut
+            $pdo = new PDO('mysql:host=' . $db_host . ';dbname=' . $db_name . ';charset=utf8', $db_user, $db_password);
+            // A Activer seulement en developpement pour gagner en visibilité sur les erreurs SQL
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            // On retourne l'instance de PDO qui sera un objet
+            return $pdo;
         } catch (PDOException $e) {
-            echo "Connection failed: " . $e->getMessage();
+            // test unitaire pour vérifier que la connexion à la base de données fonctionne
+            // echo 'Erreur : ' . $e->getMessage();
+            return null;
         }
     }
 
