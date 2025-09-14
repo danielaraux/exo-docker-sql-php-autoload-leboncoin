@@ -42,7 +42,7 @@
 
     </header>
 
-    <main class="min-vh-100 container border rounded my-4">
+    <main class="min-vh-100 container my-4">
 
 
 

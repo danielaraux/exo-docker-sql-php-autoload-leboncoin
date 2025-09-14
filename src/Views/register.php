@@ -20,7 +20,7 @@
 
                 <h1 class="mt-2">leboncoin-like</h1>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler border border-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -44,10 +44,10 @@
 
 
     <main class="min-vh-100 container">
-        <div class="card mx-auto p-3 my-4">
+        <div class="mx-auto p-3 my-4">
 
             <h2 class="text-center">Formulaire d'inscription</h2>
-            <form action="" method="post" class="form-container mx-auto my-4">
+            <form method="post" class="form-container mx-auto my-4">
 
                 <!-- USERNAME -->
                 <div class="mb-3">
@@ -93,7 +93,7 @@
                 </div>
                 <div class="text-danger">* Champs obligatoires</div>
                 <div class="text-center mt-5">
-                    <button type="submit" class="btn btn-primary">S'inscrire</button>
+                    <button type="submit" class="btn">S'inscrire</button>
                 </div>
 
             </form>

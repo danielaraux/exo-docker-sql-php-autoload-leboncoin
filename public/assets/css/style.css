@@ -13,6 +13,23 @@ h1 {
     font-weight: 800;
 }
 
+.btn {
+    background-color: #ff6e14;
+    color: white;
+}
+
+.btn:hover {
+    background-color: #ff6e14;
+    color: white;
+}
+
+
+a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: #ff6e14;
+    text-underline-offset: 10px;
+}
 
 .form-container {
     width: 75%;

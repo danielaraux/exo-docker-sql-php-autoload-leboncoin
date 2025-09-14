@@ -55,7 +55,7 @@ class UserController
             if (isset($_POST['password'])) {
 
                 if (strlen($_POST['password']) < 8) {
-                    $errors['password'] = 'Le mot de passe doit contenir entre 8 et 64 caractères';
+                    $errors['password'] = 'Le mot de passe doit contenir entre 8 et 64 caractères (Avec majuscule, minuscule + chiffre ou caractère spécial recommandé)';
                 }
             }
 
