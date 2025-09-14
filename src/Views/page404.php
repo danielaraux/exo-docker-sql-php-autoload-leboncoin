@@ -42,7 +42,22 @@
 
     </header>
 
-    <main class="min-vh-100">
+    <main class="container">
+
+        <div class="d-md-flex justify-content-around my-5">
+            <div>
+                <p class="error-404">404</p>
+                <p class="error-perdu">Perdu dans les</p>
+                <p class="mb-5 error-rayons">RAYONS !</p>
+                <p class="mt-5">Désolés, on a cherché dans tous les coins, on n’a pas trouvé la bonne page.</p>
+            </div>
+
+            <div class="text-center d-flex align-items-center justify-content-center">
+
+                <button class="btn"><a href="index.php" class="text-light text-decoration-none"><span class="me-2"><i class="bi bi-arrow-left"></i> </span>Retour à l'accueil</a></button>
+            </div>
+        </div>
+
 
         <!-- <div class="container my-5 ">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
@@ -56,7 +71,7 @@
 
     </main>
 
-    <footer class="text-center py-2">
+    <footer class="text-center py-2 fixed-bottom">
         <div>
             <h3 class="text-light mt-2">leboncoin-like 2006 - 2025</h3>
         </div>

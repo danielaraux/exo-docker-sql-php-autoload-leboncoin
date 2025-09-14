@@ -4,6 +4,8 @@
 // Nom du dossier virtuel "namespace" pour les Controllers
 namespace App\Controllers;
 
+use App\Models\User;
+
 // On utilise le dossier virtuel namespace "Models" qui pointe sur le PokemonModel
 // use App\Models\PokemonModel;
 
@@ -82,13 +84,92 @@ class UserController
             }
 
             // VERIFICATION DES ERREURS
-            // Si pas d'erreurs, alors redirige vers confirmation.php
+            // Si pas d'erreurs DE SAISIE SUR LE FORMULAIRE, alors on check si l'email et/ou l'username est déja pris
             if (empty($errors)) {
-                header("Location: index.php?url=profil");
+            }
+            if ((User::checkMail($_POST['email']) == true)) {
+                $errors['email'] = "L'adresse mail renseignée est déja utilisée, veuillez réeesayer.";
+            }
+            if ((User::checkUsername($_POST['username']) == true)) {
+                $errors['username'] = "Le nom d'utilisateur renseigné est déja utilisé, veuillez réeesayer.";
+            }
+
+            // Si pas d'erreurs A LA VERIFICATION SERVEUR, alors on crée l'utilisateur et on redirige vers la page de bienvenue
+            if (empty($errors)) {
+
+                // On vérifie si le mail et si le username sont strictement égaux à false (pas donc utilisés).
+                if ((User::checkUsername($_POST['username']) === false) && User::checkMail($_POST['email']) === false) {
+                    $userModel = new User();
+                    $addUser = $userModel->createUser($_POST['email'], $_POST['password'], $_POST['username']);
+
+                    $_SESSION['username'] = $_POST['username'];
+
+                    // On redirige vers la page de bienvenue
+                    header("Location: index.php?url=welcome");
+                }
             }
         }
-
-
         require_once __DIR__ . '/../Views/register.php'; // On appelle la vue Register
+    }
+
+
+
+
+    public function welcome()
+    {
+        require_once __DIR__ . "/../Views/welcome.php";
+    }
+
+
+
+
+    public function login()
+    {
+        require_once __DIR__ . "/../Views/login.php";
+
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+            $errorsLogin = [];
+
+            // VERIFICATION DE L'EMAIL
+            if (isset($_POST['email'])) {
+
+                if (empty($_POST['email'])) {
+
+                    $errorsLogin['email'] = 'Email obligatoire';
+
+                    // Sinon si 
+                } else if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+
+                    // Si mail non valide, on crée une erreur
+                    $errorsLogin['email'] = 'Email non valide';
+                }
+            }
+
+            // VERIFICATION DU MOT DE PASSE
+            if (isset($_POST['password'])) {
+
+                if (strlen($_POST['password']) < 8) {
+                    $errorsLogin['password'] = 'Le mot de passe doit contenir entre 8 et 64 caractères (Avec majuscule, minuscule + chiffre ou caractère spécial recommandé)';
+                }
+            }
+
+            // VERIFICATION DES ERREURS
+            // Si pas d'erreurs, alors redirige vers confirmation.php
+            if (empty($errorsLogin)) {
+                header("Location: index.php?url=welcome");
+            }
+        }
+    }
+
+
+
+
+    public function logout()
+    {
+        require_once __DIR__ . "/../Views/logout.php";
+        unset($_SESSION['user']);
+        session_destroy();
+        header('Refresh: 3; url=index.php');
     }
 }

@@ -44,7 +44,7 @@
 
 
     <main class="min-vh-100 container">
-        <div class="card mx-auto p-3 my-4">
+        <div class="mx-auto p-3 my-4">
 
             <h2 class="text-center">Se connecter</h2>
             <form action="" method="post" class="form-container mx-auto my-4">
@@ -52,7 +52,7 @@
                 <!-- EMAIL -->
                 <div class="mb-3">
                     <label for="email" class="form-label">
-                        <b>Adresse email : </b><span class="text-danger">* <i><?= isset($errors['email']) ? htmlspecialchars($errors['email']) : '' ?></i></span>
+                        <b>Adresse email : </b><span class="text-danger">* <i><?= isset($errorsLogin['email']) ? htmlspecialchars($errorsLogin['email']) : '' ?></i></span>
                     </label>
                     <input type="email" name="email" class="form-control" id="email" placeholder="Entrez votre adresse email...">
                 </div>
@@ -60,14 +60,14 @@
                 <!-- PASSWORD -->
                 <div class="mb-3">
                     <label for="password" class="form-label">
-                        <b>Mot de passe : </b><span class="text-danger">* <i><?= isset($errors['password']) ? htmlspecialchars($errors['password']) : '' ?></i></span>
+                        <b>Mot de passe : </b><span class="text-danger">* <i><?= isset($errorsLogin['password']) ? htmlspecialchars($errorsLogin['password']) : '' ?></i></span>
                     </label>
                     <input type="password" name="password" class="form-control" id="password" placeholder="Entrez votre mot de passe...">
                 </div>
 
                 <div class="text-danger">* Champs obligatoires</div>
                 <div class="text-center mt-5">
-                    <button type="submit" class="btn btn-primary">Se connecter</button>
+                    <button type="submit" class="btn">Se connecter</button>
                 </div>
 
             </form>

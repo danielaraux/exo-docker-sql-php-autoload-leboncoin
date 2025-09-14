@@ -26,13 +26,13 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav d-flex justify-content-end w-100">
                         <li class="nav-item">
+                            <button type="submit" class="btn"><i class="bi bi-plus-square"></i> <b>Déposer une annonce</b></button>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php?url=register">S'inscrire</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php?url=login">Se connecter</a>
+                            <a class="nav-link active" aria-current="page" href="index.php?url=logout">Se déconnecter</a>
                         </li>
                     </ul>
                 </div>
@@ -42,9 +42,9 @@
 
     </header>
 
-    <main class="min-vh-100 container border rounded my-4">
+    <main class="min-vh-100 container my-4">
 
-
+        <h2 class="my-2 text-center">Bienvenue <?= $_SESSION['username'] ?> !</h2>
 
 
         <!-- <div class="container my-5 ">

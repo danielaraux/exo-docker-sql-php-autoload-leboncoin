@@ -29,6 +29,11 @@ switch ($page) {
                 $objectController->login();
                 break;
 
+        case 'welcome':
+                $objectController = new UserController();
+                $objectController->welcome();
+                break;
+
         case 'profil':
                 $objectController = new UserController();
                 $objectController->profil();
@@ -55,6 +60,6 @@ switch ($page) {
                 break;
 
         default:
-                require_once __DIR__ . '/src/views/page404.php';
+                require_once __DIR__ . "/../src/Views/page404.php";
                 break;
 }

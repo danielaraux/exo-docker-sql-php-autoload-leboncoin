@@ -1,4 +1,8 @@
+/* Import de la font */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+/* Import du CDN icons de Bootstrap */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
 
 body {
     font-family: "Nunito", sans-serif;
@@ -41,4 +45,23 @@ a:hover {
 
 footer {
     background-color: #2b3441;
+}
+
+
+.error-404 {
+    color: #ff6e14;
+    font-size: 3em;
+    font-weight: bold;
+}
+
+.error-perdu {
+    color: black;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+.error-rayons {
+    color: #ff6e14;
+    font-size: 2.5em;
+    font-weight: bold;
 }
