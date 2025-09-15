@@ -27,6 +27,9 @@ h1 {
     color: white;
 }
 
+.person-icon {
+    font-size: 5em;
+}
 
 a:hover {
     text-decoration: underline;

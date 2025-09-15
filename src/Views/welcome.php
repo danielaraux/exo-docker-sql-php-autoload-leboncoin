@@ -26,13 +26,13 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav d-flex justify-content-end w-100">
                         <li class="nav-item">
-                            <button type="submit" class="btn"><i class="bi bi-plus-square"></i> <b>Déposer une annonce</b></button>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php?url=logout">Se déconnecter</a>
+                            <a class="nav-link active" aria-current="page" href="index.php?url=register">S'inscrire</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.php?url=login">Se connecter</a>
                         </li>
                     </ul>
                 </div>
@@ -42,11 +42,14 @@
 
     </header>
 
-    <main class="min-vh-100 container my-4">
+    <main class="container my-4">
 
-        <h2 class="my-2 text-center">Bienvenue <?= $_SESSION['username'] ?> !</h2>
+        <h2 class="mt-5 text-center">Bienvenue <?= $_SESSION['username'] ?> ! Votre compte a bien été crée.</h2>
 
+        <div class="text-center mt-5">
 
+            <button class="btn"><a href="index.php?url=login" class="text-decoration-none text-light">Connectez-vous !</a></button>
+        </div>
         <!-- <div class="container my-5 ">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
                
@@ -59,7 +62,7 @@
 
     </main>
 
-    <footer class="text-center py-2">
+    <footer class="text-center py-2 fixed-bottom">
         <div>
             <h3 class="text-light mt-2">leboncoin-like 2006 - 2025</h3>
         </div>

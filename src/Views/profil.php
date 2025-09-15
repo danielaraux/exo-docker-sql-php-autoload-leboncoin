@@ -24,15 +24,23 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav d-flex justify-content-end w-100">
+                    <ul class="navbar-nav d-flex justify-content-end w-100 align-items-center">
+                        <li class="nav-item">
+                            <button type="submit" class="btn"><i class="bi bi-plus-square"></i> <b>Déposer une annonce</b></button>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php?url=register">S'inscrire</a>
+                            <a class="nav-link active" aria-current="page" href="index.php?url=logout">Se déconnecter</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php?url=login">Se connecter</a>
+                        <li class="nav-item px-2">
+
+                            <a href="#" class="text-decoration-none">
+                                <div class="fs-1" aria-current="page"><i class="bi bi-person-fill"></i></div>
+                                <div class="text-center" aria-current="page"><?= $_SESSION['user']['username'] ?></div>
+                            </a>
+
                         </li>
                     </ul>
                 </div>
@@ -43,7 +51,7 @@
     </header>
 
     <main class="min-vh-100">
-        <h2>Bienvenue Homer !</h2>
+        <h2 class="text-center">Page profil</h2>
 
     </main>
 

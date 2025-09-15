@@ -43,7 +43,7 @@
     </header>
 
 
-    <main class="min-vh-100 container">
+    <main class="container">
         <div class="mx-auto p-3 my-4">
 
             <h2 class="text-center">Formulaire d'inscription</h2>
@@ -101,7 +101,7 @@
     </main>
 
 
-    <footer class="text-center py-2">
+    <footer class="text-center py-2 fixed-bottom">
         <div>
             <h3 class="text-light mt-2">leboncoin-like 2006 - 2025</h3>
         </div>

@@ -43,7 +43,7 @@
     </header>
 
 
-    <main class="min-vh-100 container">
+    <main class="container">
         <div class="mx-auto p-3 my-4">
 
             <h2 class="text-center">Se connecter</h2>
@@ -52,15 +52,15 @@
                 <!-- EMAIL -->
                 <div class="mb-3">
                     <label for="email" class="form-label">
-                        <b>Adresse email : </b><span class="text-danger">* <i><?= isset($errorsLogin['email']) ? htmlspecialchars($errorsLogin['email']) : '' ?></i></span>
+                        <b>Adresse email : </b><span class="text-danger">* <i><?= isset($errors['email']) ? htmlspecialchars($errors['email']) : '' ?></i></span>
                     </label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="Entrez votre adresse email...">
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Entrez votre adresse email..." value="<?= $_POST['email'] ?? "" ?>">
                 </div>
 
                 <!-- PASSWORD -->
                 <div class="mb-3">
                     <label for="password" class="form-label">
-                        <b>Mot de passe : </b><span class="text-danger">* <i><?= isset($errorsLogin['password']) ? htmlspecialchars($errorsLogin['password']) : '' ?></i></span>
+                        <b>Mot de passe : </b><span class="text-danger">* <i><?= isset($errors['password']) ? htmlspecialchars($errors['password']) : '' ?></i></span>
                     </label>
                     <input type="password" name="password" class="form-control" id="password" placeholder="Entrez votre mot de passe...">
                 </div>
@@ -75,7 +75,7 @@
     </main>
 
 
-    <footer class="text-center py-2">
+    <footer class="text-center py-2 fixed-bottom">
         <div>
             <h3 class="text-light mt-2">leboncoin-like 2006 - 2025</h3>
         </div>

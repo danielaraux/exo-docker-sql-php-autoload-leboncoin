@@ -12,6 +12,12 @@ use App\Models\User;
 class UserController
 {
 
+    public function profil()
+    {
+        require_once __DIR__ . "/../Views/profil.php";
+        var_dump($_SESSION["user"]);
+    }
+
     // FONCTION QUI S'EXECUTE SUR LA VUE DU FORMULAIRE
     public function register()
     {
@@ -36,6 +42,9 @@ class UserController
                 } else if (!preg_match($regName, $_POST['username'])) {
                     $errors['username'] = 'Caractères non autorisés';
                 }
+                if ((User::checkUsername($_POST['username']) == true)) {
+                    $errors['username'] = "Le nom d'utilisateur renseigné est déja utilisé, veuillez réessayer.";
+                }
             }
 
             // VERIFICATION DE L'EMAIL
@@ -50,6 +59,9 @@ class UserController
 
                     // Si mail non valide, on crée une erreur
                     $errors['email'] = 'Email non valide';
+                }
+                if ((User::checkMail($_POST['email']) == true)) {
+                    $errors['email'] = "L'adresse mail renseignée est déja utilisée, veuillez réessayer.";
                 }
             }
 
@@ -83,16 +95,7 @@ class UserController
                 $errors['cgu'] = 'Validation des CGU obligatoire';
             }
 
-            // VERIFICATION DES ERREURS
-            // Si pas d'erreurs DE SAISIE SUR LE FORMULAIRE, alors on check si l'email et/ou l'username est déja pris
-            if (empty($errors)) {
-            }
-            if ((User::checkMail($_POST['email']) == true)) {
-                $errors['email'] = "L'adresse mail renseignée est déja utilisée, veuillez réeesayer.";
-            }
-            if ((User::checkUsername($_POST['username']) == true)) {
-                $errors['username'] = "Le nom d'utilisateur renseigné est déja utilisé, veuillez réeesayer.";
-            }
+
 
             // Si pas d'erreurs A LA VERIFICATION SERVEUR, alors on crée l'utilisateur et on redirige vers la page de bienvenue
             if (empty($errors)) {
@@ -106,6 +109,8 @@ class UserController
 
                     // On redirige vers la page de bienvenue
                     header("Location: index.php?url=welcome");
+
+                    // header('Refresh: 3; url=index.php?url=welcome');
                 }
             }
         }
@@ -125,24 +130,18 @@ class UserController
 
     public function login()
     {
-        require_once __DIR__ . "/../Views/login.php";
 
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-            $errorsLogin = [];
+            $errors = [];
+
 
             // VERIFICATION DE L'EMAIL
             if (isset($_POST['email'])) {
 
                 if (empty($_POST['email'])) {
 
-                    $errorsLogin['email'] = 'Email obligatoire';
-
-                    // Sinon si 
-                } else if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-
-                    // Si mail non valide, on crée une erreur
-                    $errorsLogin['email'] = 'Email non valide';
+                    $errors['email'] = 'Email obligatoire';
                 }
             }
 
@@ -150,16 +149,37 @@ class UserController
             if (isset($_POST['password'])) {
 
                 if (strlen($_POST['password']) < 8) {
-                    $errorsLogin['password'] = 'Le mot de passe doit contenir entre 8 et 64 caractères (Avec majuscule, minuscule + chiffre ou caractère spécial recommandé)';
+                    // var_dump($_POST['password']);
+                    $errors['password'] = 'Le mot de passe doit contenir entre 8 et 64 caractères (Avec majuscule, minuscule + chiffre ou caractère spécial recommandé)';
                 }
             }
 
-            // VERIFICATION DES ERREURS
-            // Si pas d'erreurs, alors redirige vers confirmation.php
-            if (empty($errorsLogin)) {
-                header("Location: index.php?url=welcome");
+            if (empty($errors)) {
+
+                if (User::checkMail($_POST["email"])) {
+
+                    $userInfos = new User();
+                    $userInfos->getUserInfosByEmail($_POST["email"]);
+
+                    if (password_verify($_POST["password"], $userInfos->password)) {
+
+                        // Nous allons créer une variable de session "user" avec les infos du User
+                        $_SESSION["user"]["id"] = $userInfos->id;
+                        $_SESSION["user"]["email"] = $userInfos->email;
+                        $_SESSION["user"]["username"] = $userInfos->username;
+                        $_SESSION["user"]["inscription"] = $userInfos->inscription;
+
+                        // Nous allons ensuite faire une redirection sur une page choisie
+                        header("Location: index.php?url=profil");
+                    } else {
+                        $errors['connexion'] = 'Mail ou Mot de passe incorrect';
+                    }
+                } else {
+                    $errors['connexion'] = 'Mail ou Mot de passe incorrect';
+                }
             }
         }
+        require_once __DIR__ . "/../Views/login.php";
     }
 
 
