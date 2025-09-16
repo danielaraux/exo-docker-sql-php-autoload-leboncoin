@@ -187,7 +187,7 @@ class UserController
     {
         unset($_SESSION['user']);
         session_destroy();
-        header('Refresh: 3; url=index.php');
+        header('Refresh: 2; url=index.php');
         require_once __DIR__ . "/../Views/logout.php";
     }
 }
