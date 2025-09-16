@@ -19,55 +19,48 @@
 
     </header>
 
-    <main class="container my-5">
+    <main class="min-vh-100 container my-5">
 
         <div class="mx-auto p-3 my-4">
 
             <h2 class="text-center">Créer une annonce</h2>
             <form method="post" class="form-container mx-auto my-4">
 
-                <!-- USERNAME -->
+                <!-- Titre -->
                 <div class="mb-3">
-                    <label for="username" class="form-label">
-                        <b>Nom d'utilisateur : </b><span class="text-danger">* <i><?= isset($errors['username']) ? htmlspecialchars($errors['username']) : '' ?></i></span>
+                    <label for="title" class="form-label">
+                        <b>Titre de l'annonce : </b><span class="text-danger">* <i><?= isset($errors['title']) ? htmlspecialchars($errors['title']) : '' ?></i></span>
                     </label>
-                    <input type="text" name="username" class="form-control" id="username" placeholder="Entrez votre nom d'utilisateur..." value="<?= $_POST['username'] ?? "" ?>">
+                    <input type="text" name="title" class="form-control" id="title" placeholder="Entrez le titre..." value="<?= $_POST['title'] ?? "" ?>">
                 </div>
 
-                <!-- EMAIL -->
+                <!-- Description -->
                 <div class="mb-3">
-                    <label for="email" class="form-label">
-                        <b>Adresse email : </b><span class="text-danger">* <i><?= isset($errors['email']) ? htmlspecialchars($errors['email']) : '' ?></i></span>
+                    <label for="description" class="form-label">
+                        <b>Description : </b><span class="text-danger">* <i><?= isset($errors['description']) ? htmlspecialchars($errors['description']) : '' ?></i></span>
                     </label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="Entrez votre adresse email..." value="<?= $_POST['email'] ?? "" ?>">
+                    <textarea class="form-control" name="description" id="description" placeholder="Entrez votre description..." value="<?= $_POST['description'] ?? "" ?>"></textarea>
+
                 </div>
 
-                <!-- PASSWORD -->
+                <!-- Prix -->
                 <div class="mb-3">
-                    <label for="password" class="form-label">
-                        <b>Mot de passe : </b><span class="text-danger">* <i><?= isset($errors['password']) ? htmlspecialchars($errors['password']) : '' ?></i></span>
+                    <label for="price" class="form-label">
+                        <b>Prix : (en Euros) </b><span class="text-danger">* <i><?= isset($errors['price']) ? htmlspecialchars($errors['price']) : '' ?></i></span>
                     </label>
-                    <input type="password" name="password" class="form-control" id="password" placeholder="Entrez votre mot de passe...">
+                    <input type="number" name="price" class="form-control" id="price" placeholder="Entrez le prix...">
                 </div>
 
-                <!--CONFIRM PASSWORD -->
+                <!-- Photo -->
                 <div class="mb-3">
-                    <label for="password" class="form-label">
-
-                        <!-- Si passwordConfirm existe dans $errors, alors ça affiche le contenu de $errors, sinon on affiche rien -->
-                        <b>Confirmation du Mot de passe : </b><span class="text-danger">* <i><?= isset($errors['passwordConfirm']) ? htmlspecialchars($errors['passwordConfirm']) : '' ?></i>
-                            <span>
+                    <label for="photo" class="form-label">
+                        <b>Photo : (facultatif) </b>
                     </label>
-                    <input type="password" name="passwordConfirm" class="form-control" id="passwordConfirm" placeholder="Confirmez votre mot de passe...">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile">
+                    </div>
                 </div>
 
-                <!-- CGU -->
-                <div class="form-check mb-3">
-                    <input type="checkbox" name="cgu" class="form-check-input" id="exampleCheck1" value="<?= $_POST['cgu'] ?? "" ?>">
-                    <label class="form-check-label cgu" for="exampleCheck1">
-                        <b>J'accepte les CGU</b> <span class="text-danger">* <i><?= isset($errors['cgu']) ? htmlspecialchars($errors['cgu']) : '' ?></i></span>
-                    </label>
-                </div>
                 <div class="text-danger">* Champs obligatoires</div>
                 <div class="text-center mt-5">
                     <button type="submit" class="btn">Créer l'annonce</button>
@@ -79,7 +72,7 @@
 
     </main>
 
-    <footer class="text-center py-2 fixed-bottom">
+    <footer class="text-center py-2">
         <div>
             <h3 class="text-light mt-2">leboncoin-like 2006 - 2025</h3>
         </div>

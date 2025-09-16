@@ -12,7 +12,8 @@ class AnnonceController
     public function create()
     {
 
-
-        require_once __DIR__ . '/../Views/create.php'; // On appelle la vue Home
+        if (isset($_SESSION['user'])) {
+            require_once __DIR__ . '/../Views/create.php'; // On appelle la vue Home
+        }
     }
 }
