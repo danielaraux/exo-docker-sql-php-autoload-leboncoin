@@ -15,47 +15,28 @@
 
 <body>
     <header class="sticky-top border-bottom shadow">
-        <nav class="navbar navbar-expand-lg container">
-            <div class="container-fluid">
-
-                <h1 class="mt-2">leboncoin-like</h1>
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav d-flex justify-content-end w-100 align-items-center">
-                        <li class="nav-item">
-                            <button type="submit" class="btn"><i class="bi bi-plus-square"></i> <b>Déposer une annonce</b></button>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php?url=logout">Se déconnecter</a>
-                        </li>
-                        <li class="nav-item px-2">
-
-                            <a href="#" class="text-decoration-none">
-                                <div class="fs-1" aria-current="page"><i class="bi bi-person-fill"></i></div>
-                                <div class="text-center" aria-current="page"><?= $_SESSION['user']['username'] ?></div>
-                            </a>
-
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-        </nav>
+        <?php include_once __DIR__ . "/templates/navbar.php" ?>
 
     </header>
 
-    <main class="min-vh-100">
-        <h2 class="text-center">Page profil</h2>
+    <main class="container my-5">
+
+        <?php
+        var_dump($_SESSION["user"]);
+        ?>
+
+        <div class="card">
+            <div class="m-3">
+                <h2>Votre Profil :</h2>
+                <div class="my-2 mt-3"><b>Nom d'utilisateur : </b><?= $_SESSION['user']['username'] ?></div>
+                <div class="my-2"><b>Email : </b><?= $_SESSION['user']['email'] ?></div>
+                <div class="my-2"><b>Date d'inscription : </b><?= $_SESSION['user']['inscription'] ?></div>
+            </div>
+        </div>
 
     </main>
 
-    <footer class="text-center py-2">
+    <footer class="text-center py-2 fixed-bottom">
         <div>
             <h3 class="text-light mt-2">leboncoin-like 2006 - 2025</h3>
         </div>

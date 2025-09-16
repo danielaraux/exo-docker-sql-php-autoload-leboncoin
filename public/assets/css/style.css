@@ -17,6 +17,16 @@ h1 {
     font-weight: 800;
 }
 
+h1>a {
+    text-decoration: none;
+    color: #ff6e14;
+}
+
+.title-color:hover {
+    text-decoration: none;
+}
+
+
 .btn {
     background-color: #ff6e14;
     color: white;

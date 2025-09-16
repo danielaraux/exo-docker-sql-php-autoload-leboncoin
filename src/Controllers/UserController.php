@@ -11,11 +11,10 @@ use App\Models\User;
 
 class UserController
 {
-
+    // FONCTION PROFIL
     public function profil()
     {
         require_once __DIR__ . "/../Views/profil.php";
-        var_dump($_SESSION["user"]);
     }
 
     // FONCTION QUI S'EXECUTE SUR LA VUE DU FORMULAIRE
@@ -169,6 +168,7 @@ class UserController
                         $_SESSION["user"]["username"] = $userInfos->username;
                         $_SESSION["user"]["inscription"] = $userInfos->inscription;
 
+
                         // Nous allons ensuite faire une redirection sur une page choisie
                         header("Location: index.php?url=profil");
                     } else {
@@ -183,13 +183,11 @@ class UserController
     }
 
 
-
-
     public function logout()
     {
-        require_once __DIR__ . "/../Views/logout.php";
         unset($_SESSION['user']);
         session_destroy();
         header('Refresh: 3; url=index.php');
+        require_once __DIR__ . "/../Views/logout.php";
     }
 }

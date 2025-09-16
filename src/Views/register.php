@@ -15,30 +15,7 @@
 
 <body>
     <header class="sticky-top border-bottom shadow">
-        <nav class="navbar navbar-expand-lg container">
-            <div class="container-fluid">
-
-                <h1 class="mt-2">leboncoin-like</h1>
-
-                <button class="navbar-toggler border border-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav d-flex justify-content-end w-100">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php?url=register">S'inscrire</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php?url=login">Se connecter</a>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-        </nav>
+        <?php include_once __DIR__ . "/templates/navbar.php" ?>
 
     </header>
 
