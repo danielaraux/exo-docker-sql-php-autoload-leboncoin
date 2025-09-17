@@ -91,3 +91,20 @@ footer {
     font-size: 2.5em;
     font-weight: bold;
 }
+
+
+/* Supprimer les flèches du champ input number sur Chrome */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+/* Supprimer les flèches du champ input number sur Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+    /* ancien support */
+    appearance: textfield;
+    /* standard */
+}

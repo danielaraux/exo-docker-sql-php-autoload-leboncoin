@@ -24,18 +24,20 @@
         <?php
         var_dump($_POST);
         var_dump($_SESSION);
+        var_dump($createAnnonce);
+
         ?>
-
-        <div class="card" style="width: 18rem;">
-            <img src="" class="card-img-top" alt="photo de l'annonce">
-            <div class="card-body">
-                <h5 class="card-title">Titre de la card</h5>
-                <p class="card-text">Prix</p>
-                <a href="#" class="btn btn-primary">Détails</a>
+        <?php
+        foreach ($annonces as $item) { ?>
+            <div class="card" style="width: 18rem;">
+                <img src="<?= isset($annonces['']) ?>" class="card-img-top" alt="photo de l'annonce">
+                <div class="card-body">
+                    <h5 class="card-title">Titre : <?= $_SESSION['user']['title'] ?></h5>
+                    <p class="card-text">Prix : <?= $_SESSION['user']['price'] ?> €</p>
+                    <a href="#" class="btn btn-primary">Voir les détails de l'annonce</a>
+                </div>
             </div>
-        </div>
-
-
+        <?php } ?>
 
     </main>
 

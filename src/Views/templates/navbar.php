@@ -11,7 +11,7 @@
                 <?php
                 if (isset($_SESSION['user'])) { ?>
                     <li class="nav-item">
-                        <button class="btn"><a href="index.php?url=create" class="text-decoration-none text-light"><i class="bi bi-plus-square"></i> <b>Déposer une annonce</b></a></button>
+                        <a href="index.php?url=create" class="btn text-decoration-none text-light"><i class="bi bi-plus-square"></i> <b>Déposer une annonce</b></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>

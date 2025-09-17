@@ -36,7 +36,7 @@ class AnnonceController
             }
             // VERIFICATION DE L'IMAGE
             // // Récupérer l'image jointe et la stocker dans uploads
-            if (!empty($_FILES['picture'])) {
+            if (!empty($_FILES['picture']['tmp-name'])) {
                 $uploads_dir = __DIR__ . '/../../public/uploads/'; // Chemin du dossier
                 $tmp_name = $_FILES['picture']['tmp_name'];  // Chemin temporaire
                 $name = basename($_FILES['picture']['name']); // Nom du fichier
@@ -69,17 +69,24 @@ class AnnonceController
                 $id = $_SESSION['user']['id']; // On récupère l'ID
                 $picture = $_FILES['picture']['name']; // On récupère la photo
 
+
+
                 // Création de l'Annonce
                 $objAnnonce = new Annonce();
                 $addAnnonce = $objAnnonce->createAnnonce($title, $description, $price, $picture, $id);
 
-                // header("Location: index.php?url=annonces");
+                header("Location: index.php?url=annonces");
             }
         }
         require_once __DIR__ . '/../Views/create.php'; // On appelle la vue Home
     }
     public function index()
     {
+
+
+        $objAnnonce = new Annonce;
+        $createAnnonce = $objAnnonce->findAll();
+
         require_once __DIR__ . '/../Views/annonces.php';
     }
 }

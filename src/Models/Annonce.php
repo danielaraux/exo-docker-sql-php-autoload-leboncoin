@@ -1,16 +1,13 @@
 <?php
 
-
 // Nom du dossier virtuel "namespace" pour les Models
 namespace App\Models;
-
 
 use App\Models\Database;
 
 // On va utiliser PDO et PDOException
 use PDO;
 use PDOException;
-
 
 class Annonce
 {
@@ -62,6 +59,34 @@ class Annonce
             // test unitaire pour connaitre la raison de l'echec
             // echo 'Erreur : ' . $e->getMessage();
             return false;
+        }
+    }
+
+    public function findAll(): array
+    {
+
+        try {
+            $pdo = Database::createInstancePDO();
+            if (!$pdo) {
+                // return false;
+                return [];
+            }
+
+            // requête SQL pour récupérer toute la table annonces
+            $sql = 'SELECT * FROM `annonces`';
+
+
+
+            // On prépare la requête avant de l'exécuter
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            // test unitaire pour connaitre la raison de l'echec
+            // echo 'Erreur : ' . $e->getMessage();
+            // return false;
+            return [];
         }
     }
 }

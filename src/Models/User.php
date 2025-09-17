@@ -1,16 +1,13 @@
 <?php
 
-
 // Nom du dossier virtuel "namespace" pour les Models
 namespace App\Models;
-
 
 use App\Models\Database;
 
 // On va utiliser PDO et PDOException
 use PDO;
 use PDOException;
-
 
 class User
 {
@@ -73,7 +70,6 @@ class User
     {
 
         try {
-            // Creation d'une instance de connexion à la base de données
             $pdo = Database::createInstancePDO();
 
             // test si la connexion est ok

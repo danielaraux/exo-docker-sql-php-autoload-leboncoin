@@ -40,8 +40,6 @@
                         <b>Description : </b><span class="text-danger">* <i><?= isset($errors['description']) ? htmlspecialchars($errors['description']) : '' ?></i></span>
                     </label>
                     <textarea class="form-control" name="description" id="description" placeholder="Entrez votre description..." rows="5"><?= $_POST['description'] ?? "" ?></textarea>
-
-
                 </div>
 
                 <!-- Prix -->
@@ -49,8 +47,7 @@
                     <label for="price" class="form-label">
                         <b>Prix : (en Euros) </b><span class="text-danger">* <i><?= isset($errors['price']) ? htmlspecialchars($errors['price']) : '' ?></i></span>
                     </label>
-                    <input type="number" name="price" class="form-control" id="price" placeholder="Entrez le prix..." value="<?= $_POST['price'] ?? "" ?>">
-
+                    <input type="number" name="price" class="form-control" id="price" step="any" min="1" placeholder="Entrez le prix..." value="<?= $_POST['price'] ?? "" ?>">
                 </div>
 
                 <!-- Photo -->
