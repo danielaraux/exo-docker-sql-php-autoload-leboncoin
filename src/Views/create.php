@@ -56,7 +56,8 @@
                 <!-- Photo -->
                 <div class="mb-3">
                     <label for="photo" class="form-label">
-                        <b>Photo : (facultatif) </b>
+                        <b>Photo :</b> (facultatif) formats valides : jpeg, jpg, webp, png. Taille maximum : 2 Mo.
+                        <div class="text-danger my-2"><b><i><?= isset($errors['picture']) ? htmlspecialchars($errors['picture']) : '' ?></i></b></div>
                     </label>
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" name="picture" id="picture">
