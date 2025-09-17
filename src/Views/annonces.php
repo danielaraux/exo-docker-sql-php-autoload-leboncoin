@@ -21,18 +21,21 @@
 
     <main class="min-vh-100 container border rounded my-4">
 
+        <?php
+        var_dump($_POST);
+        var_dump($_SESSION);
+        ?>
 
-
-
-        <!-- <div class="container my-5 ">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
-               
+        <div class="card" style="width: 18rem;">
+            <img src="" class="card-img-top" alt="photo de l'annonce">
+            <div class="card-body">
+                <h5 class="card-title">Titre de la card</h5>
+                <p class="card-text">Prix</p>
+                <a href="#" class="btn btn-primary">Détails</a>
             </div>
         </div>
 
-        <div class="d-flex justify-content-end m-3">
-            <a href="#" class="btn btn-primary">Revenir en haut</a>
-        </div> -->
+
 
     </main>
 

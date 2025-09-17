@@ -59,7 +59,7 @@
                         <b>Photo : (facultatif) </b>
                     </label>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="picture" id="customFile">
+                        <input type="file" class="custom-file-input" name="picture" id="picture">
                     </div>
                 </div>
 
