@@ -21,9 +21,6 @@
 
     <main class="container my-5">
 
-        <?php
-        var_dump($_SESSION["user"]);
-        ?>
 
         <div class="card">
             <div class="m-3">

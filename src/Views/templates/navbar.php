@@ -7,7 +7,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav d-flex justify-content-end w-100 align-items-center">
+            <ul class="navbar-nav">
                 <?php
                 if (isset($_SESSION['user'])) { ?>
                     <li class="nav-item">

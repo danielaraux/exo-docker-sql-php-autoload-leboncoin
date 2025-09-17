@@ -4,6 +4,8 @@
 // Nom du dossier virtuel "namespace" pour les Controllers
 namespace App\Controllers;
 
+use App\Models\Annonce;
+
 // On utilise le dossier virtuel namespace "Models" qui pointe sur le PokemonModel
 // use App\Models\PokemonModel;
 
@@ -43,38 +45,23 @@ class AnnonceController
             }
 
             if (empty($errors)) {
-                var_dump($_SESSION['user']);
+                // var_dump($_POST);
+
+                // On défini les variables en fonction du formulaire
+                $title = $_POST['title'];
+                $description = $_POST['description'];
+                $price = $_POST['price'];
+                $id = $_SESSION['user']['id']; // On récupère l'ID
+                $picture = $_FILES['picture']['name']; // On récupère la photo
+
+                // var_dump($id);
+                // var_dump($_FILES['picture']['name']);
+
+
+                // Création de l'Annonce
+                $objAnnonce = new Annonce();
+                $addAnnonce = $objAnnonce->createAnnonce($title, $description, $price, $picture, $id);
             }
-
-            //     if (empty($errors)) {
-
-            //         if (User::checkMail($_POST["email"])) {
-
-            //             $userInfos = new User();
-            //             $userInfos->getUserInfosByEmail($_POST["email"]);
-
-            //             if (password_verify($_POST["password"], $userInfos->password)) {
-
-            //                 // Nous allons créer une variable de session "user" avec les infos du User
-            //                 $_SESSION["user"]["id"] = $userInfos->id;
-            //                 $_SESSION["user"]["email"] = $userInfos->email;
-            //                 $_SESSION["user"]["username"] = $userInfos->username;
-            //                 $_SESSION["user"]["inscription"] = $userInfos->inscription;
-
-
-            //                 // Nous allons ensuite faire une redirection sur une page choisie
-            //                 header("Location: index.php?url=profil");
-            //             } else {
-            //                 $errors['connexion'] = 'Mail ou Mot de passe incorrect';
-            //             }
-            //         } else {
-            //             $errors['connexion'] = 'Mail ou Mot de passe incorrect';
-            //         }
-            //     }
-            // }
-
-
-
         }
         require_once __DIR__ . '/../Views/create.php'; // On appelle la vue Home
     }

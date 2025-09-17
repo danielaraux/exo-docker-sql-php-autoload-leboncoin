@@ -24,7 +24,7 @@
         <div class="mx-auto p-3 my-4">
 
             <h2 class="text-center">Créer une annonce</h2>
-            <form method="post" class="form-container mx-auto my-4">
+            <form method="post" class="form-container mx-auto my-4" enctype="multipart/form-data">
 
                 <!-- Titre -->
                 <div class="mb-3">
@@ -59,7 +59,7 @@
                         <b>Photo : (facultatif) </b>
                     </label>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="customFile">
+                        <input type="file" class="custom-file-input" name="picture" id="customFile">
                     </div>
                 </div>
 
