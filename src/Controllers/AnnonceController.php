@@ -80,6 +80,8 @@ class AnnonceController
         }
         require_once __DIR__ . '/../Views/create.php'; // On appelle la vue Home
     }
+
+
     public function index()
     {
 

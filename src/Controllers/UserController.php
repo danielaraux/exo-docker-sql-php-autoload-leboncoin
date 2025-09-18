@@ -147,15 +147,14 @@ class UserController
             // VERIFICATION DU MOT DE PASSE
             if (isset($_POST['password'])) {
 
-                if (strlen($_POST['password']) < 8) {
-                    // var_dump($_POST['password']);
-                    $errors['password'] = 'Le mot de passe doit contenir entre 8 et 64 caractères (Avec majuscule, minuscule + chiffre ou caractère spécial recommandé)';
+                if (empty($_POST['password'])) {
+                    $errors['password'] = 'Mot de passe obligatoire';
                 }
             }
 
             if (empty($errors)) {
 
-                if (User::checkMail($_POST["email"])) {
+                if (User::checkMail($_POST["email"]) === true) {
 
                     $userInfos = new User();
                     $userInfos->getUserInfosByEmail($_POST["email"]);
@@ -172,10 +171,10 @@ class UserController
                         // Nous allons ensuite faire une redirection sur une page choisie
                         header("Location: index.php?url=profil");
                     } else {
-                        $errors['connexion'] = 'Mail ou Mot de passe incorrect';
+                        $errors['email'] = 'Adresse mail ou mot de passe incorrect';
                     }
                 } else {
-                    $errors['connexion'] = 'Mail ou Mot de passe incorrect';
+                    $errors['email'] = 'Adresse mail ou mot de passe incorrect';
                 }
             }
         }
