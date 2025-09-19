@@ -21,7 +21,7 @@
                     </li>
                     <li class="nav-item px-2">
                         <a href="index.php?url=profil" class="text-decoration-none">
-                            <div class="fs-1" aria-current="page"><i class="bi bi-person-fill"></i></div>
+                            <div class="d-flex justify-content-center" aria-current="page"><i class="bi bi-person-fill fs-1"></i></div>
                             <div class="text-center" aria-current="page"><?= $_SESSION['user']['username'] ?></div>
                         </a>
                     </li>

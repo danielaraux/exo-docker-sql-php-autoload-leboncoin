@@ -70,7 +70,7 @@
                 </div>
                 <div class="text-danger">* Champs obligatoires</div>
                 <div class="text-center mt-5">
-                    <button type="submit" class="btn">S'inscrire</button>
+                    <button type="submit" class="btn mb-3">S'inscrire</button>
                 </div>
 
             </form>

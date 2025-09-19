@@ -64,18 +64,14 @@ class Annonce
 
     public function findAll(): array
     {
-
         try {
             $pdo = Database::createInstancePDO();
             if (!$pdo) {
                 // return false;
                 return [];
             }
-
             // requête SQL pour récupérer toute la table annonces
             $sql = 'SELECT * FROM `annonces`';
-
-
 
             // On prépare la requête avant de l'exécuter
             $stmt = $pdo->prepare($sql);
@@ -87,6 +83,26 @@ class Annonce
             // echo 'Erreur : ' . $e->getMessage();
             // return false;
             return [];
+        }
+    }
+
+    public function findById(int $id): ?array
+    {
+        try {
+            $pdo = Database::createInstancePDO();
+            if (!$pdo) {
+                return null;
+            }
+
+            $sql = 'SELECT * FROM `annonces` WHERE a_id = :id';
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $annonce = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $annonce ?: null;
+        } catch (PDOException $e) {
+            return null;
         }
     }
 }

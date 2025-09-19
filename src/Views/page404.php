@@ -26,7 +26,7 @@
                 <p class="error-404">404</p>
                 <p class="error-perdu">Perdu dans les</p>
                 <p class="mb-5 error-rayons">RAYONS !</p>
-                <p class="mt-5">Désolés, on a cherché dans tous les coins, on n’a pas trouvé la bonne page.</p>
+                <p class="mt-5">La page n'a pas été trouvée.</p>
             </div>
 
             <div class="text-center d-flex align-items-center justify-content-center">

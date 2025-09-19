@@ -21,12 +21,18 @@ class UserController
     public function register()
     {
 
+        // Si on est connecté, on ne peut pas aller sur register, on arrive sur error 404
+        if (isset($_SESSION['user']['username'])) {
+            require_once __DIR__ . '/../Views/page404.php';
+            exit;
+        }
+
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             $errors = [];
 
-            // Création de la regex
-            $regName = "/^[a-zA-Z0-9àèé\-_]+$/";
+            // Création de la regex (autorise entre 3 et 20 caractères alphanumériques)
+            $regName = "/^[a-zA-Z0-9]{3,20}$/";
 
             // VERIFICATION USERNAME
             if (isset($_POST['username'])) {
@@ -35,11 +41,11 @@ class UserController
                 if (empty($_POST['username'])) {
 
                     // Si c'est vide, on le stocke dans notre tableau
-                    $errors['username'] = "Nom d'utilisateur obligatoire";
+                    $errors['username'] = "Le nom d'utilisateur doit contenir entre 3 et 20 caractères uniquement en alphanumérique";
 
                     // Sinon si ça ne respecte pas le regex, alors on stocke caractères non autorisés
                 } else if (!preg_match($regName, $_POST['username'])) {
-                    $errors['username'] = 'Caractères non autorisés';
+                    $errors['username'] = 'Caractères spéciaux non autorisés, uniquement 3 à 20 caractères alphanumériques autorisés';
                 }
                 if ((User::checkUsername($_POST['username']) == true)) {
                     $errors['username'] = "Le nom d'utilisateur renseigné est déja utilisé, veuillez réessayer.";
@@ -108,11 +114,12 @@ class UserController
 
                     // On redirige vers la page de bienvenue
                     header("Location: index.php?url=welcome");
-
+                    exit;
                     // header('Refresh: 3; url=index.php?url=welcome');
                 }
             }
         }
+
         require_once __DIR__ . '/../Views/register.php'; // On appelle la vue Register
     }
 
@@ -186,7 +193,7 @@ class UserController
     {
         unset($_SESSION['user']);
         session_destroy();
-        header('Refresh: 2; url=index.php');
+        header('Refresh: 1; url=index.php');
         require_once __DIR__ . "/../Views/logout.php";
     }
 }

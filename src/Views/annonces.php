@@ -21,25 +21,33 @@
 
     <main class="min-vh-100 container border rounded my-4">
 
-        <?php
-        var_dump($_POST);
-        var_dump($_SESSION);
-        var_dump($createAnnonce);
+        <div class="row g-3 my-2">
+            <?php foreach ($createAnnonce as $annonce) { ?>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="card h-100 d-flex flex-column">
+                        <img src="<?= htmlspecialchars($annonce['a_picture']) ?>"
+                            class="card-img-top"
+                            alt="photo de l'annonce">
 
-        ?>
-        <?php
-        foreach ($annonces as $item) { ?>
-            <div class="card" style="width: 18rem;">
-                <img src="<?= isset($annonces['']) ?>" class="card-img-top" alt="photo de l'annonce">
-                <div class="card-body">
-                    <h5 class="card-title">Titre : <?= $_SESSION['user']['title'] ?></h5>
-                    <p class="card-text">Prix : <?= $_SESSION['user']['price'] ?> €</p>
-                    <a href="#" class="btn btn-primary">Voir les détails de l'annonce</a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title"><?= htmlspecialchars($annonce['a_title']) ?></h5>
+                            <p class="card-text">Prix : <?= htmlspecialchars($annonce['a_price']) ?> €</p>
+
+                            <!-- lien avec l'ID de l'annonce -->
+                            <a href="index.php?url=details/<?= $annonce['a_id'] ?>"
+                                class="btn btn-primary mt-auto">
+                                Voir les détails de l'annonce
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        <?php } ?>
+            <?php } ?>
+        </div>
 
     </main>
+
+
+
 
     <footer class="text-center py-2">
         <div>

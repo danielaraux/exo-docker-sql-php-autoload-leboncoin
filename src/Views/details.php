@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -19,22 +15,38 @@
 
     </header>
 
-    <main class="min-vh-100 container border rounded my-4">
+    <main class="min-vh-100 container my-4">
+        <div class="row g-4 mt-5">
+            <!-- Image -->
+            <div class="col-12 col-md-5">
+                <img src="<?= htmlspecialchars($annonce['a_picture']) ?>"
+                    class="img-fluid rounded shadow"
+                    alt="photo de l'annonce">
+            </div>
 
+            <!-- Contenu -->
+            <div class="col-12 col-md-7">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h3 class="card-title"><?= htmlspecialchars($annonce['a_title']) ?></h3>
+                    <a href="index.php?url=annonces" class="btn">Retour aux annonces</a>
+                </div>
 
+                <p class="fw-bold fs-5">Prix : <?= htmlspecialchars($annonce['a_price']) ?> €</p>
 
+                <p class="card-text">
+                    <?= htmlspecialchars($annonce['a_description']) ?>
+                </p>
 
-        <!-- <div class="container my-5 ">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
-               
+                <div class="d-flex justify-content-center mt-4">
+                    <a href="#" class="btn">Contacter le vendeur</a>
+                </div>
             </div>
         </div>
-
-        <div class="d-flex justify-content-end m-3">
-            <a href="#" class="btn btn-primary">Revenir en haut</a>
-        </div> -->
-
     </main>
+
+
+
+
 
     <footer class="text-center py-2">
         <div>

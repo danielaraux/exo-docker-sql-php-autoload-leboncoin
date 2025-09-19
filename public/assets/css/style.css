@@ -17,11 +17,13 @@ body {
     justify-content: end;
     width: 100%;
     align-items: center;
+    gap: 1em;
 
     @media (max-width:430px) {
         display: flex;
         justify-content: end;
         align-items: start;
+        gap: 0;
     }
 }
 
