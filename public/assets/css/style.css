@@ -56,7 +56,7 @@ h1>a {
     font-size: 5em;
 }
 
-a:hover {
+li>a:hover {
     text-decoration: underline;
     text-decoration-thickness: 2px;
     text-decoration-color: #ff6e14;

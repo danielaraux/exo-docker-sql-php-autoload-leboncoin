@@ -19,11 +19,13 @@
 
     </header>
 
-    <main class="min-vh-100 container border rounded my-4">
+    <main class="min-vh-100 container my-4">
+
+        <h2 class="text-center">Toutes les annonces</h2>
 
         <div class="row g-3 my-2">
             <?php foreach ($createAnnonce as $annonce) { ?>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="col-6 col-sm-6 col-md-4 col-lg-3">
                     <div class="card h-100 d-flex flex-column">
                         <img src="<?= htmlspecialchars($annonce['a_picture']) ?>"
                             class="card-img-top"
@@ -35,7 +37,7 @@
 
                             <!-- lien avec l'ID de l'annonce -->
                             <a href="index.php?url=details/<?= $annonce['a_id'] ?>"
-                                class="btn btn-primary mt-auto">
+                                class="btn mt-auto">
                                 Voir les détails de l'annonce
                             </a>
                         </div>

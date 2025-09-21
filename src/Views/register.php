@@ -20,7 +20,7 @@
     </header>
 
 
-    <main class="container">
+    <main class="container min-vh-100">
         <div class="mx-auto p-3 my-4">
 
             <h2 class="text-center">Formulaire d'inscription</h2>
@@ -69,16 +69,20 @@
                     </label>
                 </div>
                 <div class="text-danger">* Champs obligatoires</div>
+                <div class="my-3">
+                    <a href="index.php?url=login">Déja inscrit ? Connectez-vous !</a>
+                </div>
                 <div class="text-center mt-5">
                     <button type="submit" class="btn mb-3">S'inscrire</button>
                 </div>
 
             </form>
+
         </div>
     </main>
 
 
-    <footer class="text-center py-2 fixed-bottom">
+    <footer class="text-center py-2">
         <div>
             <h3 class="text-light mt-2">leboncoin-like 2006 - 2025</h3>
         </div>

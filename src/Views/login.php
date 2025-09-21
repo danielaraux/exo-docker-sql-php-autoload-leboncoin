@@ -43,6 +43,9 @@
                 </div>
 
                 <div class="text-danger">* Champs obligatoires</div>
+                <div class="my-3">
+                    <a href="index.php?url=register">Pas encore inscrit ? Inscrivez-vous ici !</a>
+                </div>
                 <div class="text-center mt-5">
                     <button type="submit" class="btn">Se connecter</button>
                 </div>

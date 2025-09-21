@@ -19,13 +19,16 @@
 
     </header>
 
-    <main class="min-vh-100 container my-4">
+    <main class="container my-4">
 
+        <div class="text-center">
+            <h2 class="my-5">Bienvenue sur le site leboncoin-like</h2>
 
-
+            <a href="index.php?url=annonces" class="btn my-4">Voir toutes les annonces</a>
+        </div>
     </main>
 
-    <footer class="text-center py-2">
+    <footer class="text-center py-2 fixed-bottom">
         <div>
             <h3 class="text-light mt-2">leboncoin-like 2006 - 2025</h3>
         </div>
