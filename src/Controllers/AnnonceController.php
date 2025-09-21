@@ -32,7 +32,7 @@ class AnnonceController
                 $uploads_dir = __DIR__ . '/../../public/uploads/';
                 $user_dir = $uploads_dir . $username . '/';
 
-                // Création du dossier utilisateur si nécessaire
+                // Création du dossier utilisateur si il n'existe pas
                 if (!is_dir($user_dir)) {
                     mkdir($user_dir, 0755, true);
                 }
@@ -48,19 +48,20 @@ class AnnonceController
                 } elseif ($size > $maxSize) {
                     $errors['picture'] = "Fichier trop lourd";
                 } else {
-                    // Génération d’un nom unique
+
+                    // uniqid
                     $extension = pathinfo($_FILES['picture']['name'], PATHINFO_EXTENSION);
                     $newName = uniqid('', true) . '.' . $extension;
 
                     if (move_uploaded_file($tmp_name, $user_dir . $newName)) {
-                        $picture = "uploads/$username/$newName"; // remplacer la valeur par défaut
+                        $picture = "uploads/$username/$newName";
                     } else {
                         $errors['picture'] = "Erreur lors de l'upload du fichier";
                     }
                 }
             }
 
-            // Si aucune erreur, création de l'annonce
+            // Si pas d'erreur, on crée l'annonce
             if (empty($errors)) {
                 $title = $_POST['title'];
                 $description = $_POST['description'];
