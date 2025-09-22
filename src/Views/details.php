@@ -16,12 +16,17 @@
     </header>
 
     <main class="min-vh-100 container my-4">
-        <div class="row g-4 mt-5">
+
+        <h2 class="text-center">Détails de l'annonce :</h2>
+        <div class="displayContainer">
             <!-- Image -->
-            <div class="col-12 col-md-5">
-                <img src="<?= htmlspecialchars($annonce['a_picture']) ?>"
-                    class="img-fluid rounded shadow"
-                    alt="photo de l'annonce">
+            <div class="imgContainer mx-auto mb-5">
+                <img
+                    src="<?= $annonce['a_picture'] !== "nophoto.jpg"
+                                ? '/uploads/' . $_SESSION['user']['username'] . '/' . htmlspecialchars($annonce['a_picture'])
+                                : '/uploads/nophoto.jpg' ?>"
+                    class="img-fluid w-100 h-100 object-fit-contain rounded"
+                    alt="<?= htmlspecialchars($annonce['a_title']) ?>">
             </div>
 
             <!-- Contenu -->

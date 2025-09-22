@@ -71,10 +71,26 @@ li>a:hover {
     }
 }
 
+
 footer {
     background-color: #2b3441;
 }
 
+.displayContainer {
+    display: flex;
+    margin-top: 3em;
+    gap: 5em;
+
+    @media (max-width: 430px) {
+        display: block;
+    }
+}
+
+.imgContainer {
+    @media (max-width: 430px) {
+        width: 80%;
+    }
+}
 
 .error-404 {
     color: #ff6e14;
