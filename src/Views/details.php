@@ -31,6 +31,8 @@
                     <a href="index.php?url=annonces" class="btn">Retour aux annonces</a>
                 </div>
 
+                <p class="card-text">Date de création : <?= htmlspecialchars($annonce['a_publication']) ?></p>
+
                 <p class="fw-bold fs-5">Prix : <?= htmlspecialchars($annonce['a_price']) ?> €</p>
 
                 <p class="card-text">

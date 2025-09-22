@@ -22,42 +22,47 @@ class AnnonceController
                 $errors['price'] = 'Prix obligatoire';
             }
 
-            // Valeur par défaut pour l'image
-            $picture = "uploads/nophoto.jpg";
+            // var_dump($_FILES);
 
-            // Vérification de l'image uploadée
-            if (!empty($_FILES['picture']['tmp_name'])) {
+            if (empty($errors)) {
 
                 $username = $_SESSION['user']['username'];
                 $uploads_dir = __DIR__ . '/../../public/uploads/';
                 $user_dir = $uploads_dir . $username . '/';
 
-                // Création du dossier utilisateur si il n'existe pas
-                if (!is_dir($user_dir)) {
-                    mkdir($user_dir, 0755, true);
-                }
 
-                $tmp_name = $_FILES['picture']['tmp_name'];
-                $mime = mime_content_type($tmp_name);
-                $allowed = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
-                $maxSize = 2 * 1024 * 1024;
-                $size = $_FILES['picture']['size'];
+                if ($_FILES['picture']['error'] === 0) {
 
-                if (!in_array($mime, $allowed)) {
-                    $errors['picture'] = "Type de fichier non autorisé";
-                } elseif ($size > $maxSize) {
-                    $errors['picture'] = "Fichier trop lourd";
-                } else {
-
-                    // uniqid
-                    $extension = pathinfo($_FILES['picture']['name'], PATHINFO_EXTENSION);
-                    $newName = uniqid('', true) . '.' . $extension;
-
-                    if (move_uploaded_file($tmp_name, $user_dir . $newName)) {
-                        $picture = "uploads/$username/$newName";
-                    } else {
-                        $errors['picture'] = "Erreur lors de l'upload du fichier";
+                    // Création du dossier utilisateur si il n'existe pas
+                    if (!is_dir($user_dir)) {
+                        mkdir($user_dir, 0755, true);
                     }
+
+                    $tmp_name = $_FILES['picture']['tmp_name'];
+                    $mime = mime_content_type($tmp_name);
+                    $allowed = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
+                    $maxSize = 2 * 1024 * 1024;
+                    $size = $_FILES['picture']['size'];
+
+                    if (!in_array($mime, $allowed)) {
+                        $errors['picture'] = "Type de fichier non autorisé";
+                    } elseif ($size > $maxSize) {
+                        $errors['picture'] = "Fichier trop lourd";
+                    } else {
+
+                        // uniqid
+                        $extension = pathinfo($_FILES['picture']['name'], PATHINFO_EXTENSION);
+                        // Génération du nom ex. dg6fd4g6dsfg65dsfgds pour la photo
+                        $newName = uniqid('', true) . '.' . $extension;
+
+                        if (move_uploaded_file($tmp_name, $user_dir . $newName)) {
+                            $picture = $newName;
+                        } else {
+                            $errors['picture'] = "Erreur lors de l'upload du fichier";
+                        }
+                    }
+
+                    //
                 }
             }
 
@@ -84,6 +89,8 @@ class AnnonceController
     {
         $objAnnonce = new Annonce();
         $createAnnonce = $objAnnonce->findAll();
+
+        // $annonce[a_picture] qui affiche ma photo
 
         require_once __DIR__ . '/../Views/annonces.php';
     }

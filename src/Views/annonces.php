@@ -21,18 +21,23 @@
 
     <main class="min-vh-100 container my-4">
 
+
         <h2 class="text-center">Toutes les annonces</h2>
 
         <div class="row g-3 my-2">
             <?php foreach ($createAnnonce as $annonce) { ?>
                 <div class="col-6 col-sm-6 col-md-4 col-lg-3">
                     <div class="card h-100 d-flex flex-column">
-                        <img src="<?= htmlspecialchars($annonce['a_picture']) ?>"
-                            class="card-img-top"
-                            alt="photo de l'annonce">
+
+                        <img src="<?= $annonce['a_picture'] !== "nophoto.jpg"
+                                        ? '/uploads/' . $_SESSION['user']['username'] . '/' . htmlspecialchars($annonce['a_picture'])
+                                        : '/uploads/nophoto.jpg' ?>">
+
+
 
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title"><?= htmlspecialchars($annonce['a_title']) ?></h5>
+                            <p class="card-text">Date de création : <?= htmlspecialchars($annonce['a_publication']) ?></p>
                             <p class="card-text">Prix : <?= htmlspecialchars($annonce['a_price']) ?> €</p>
 
                             <!-- lien avec l'ID de l'annonce -->
