@@ -41,7 +41,7 @@ class AnnonceController
                     $tmp_name = $_FILES['picture']['tmp_name'];
                     $mime = mime_content_type($tmp_name);
                     $allowed = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
-                    $maxSize = 2 * 1024 * 1024;
+                    $maxSize = 8 * 1024 * 1024;
                     $size = $_FILES['picture']['size'];
 
                     if (!in_array($mime, $allowed)) {
@@ -55,14 +55,15 @@ class AnnonceController
                         // Génération du nom ex. dg6fd4g6dsfg65dsfgds pour la photo
                         $newName = uniqid('', true) . '.' . $extension;
 
-                        if (move_uploaded_file($tmp_name, $user_dir . $newName)) {
-                            $picture = $newName;
+                        $picture = $newName;
+
+                        // on prend le nom de l'image récupérée pour la déplacer dans /uploads/Test/ ça fonctionne.
+                        if (isset($picture)) {
+                            move_uploaded_file($tmp_name, $user_dir . $newName);
                         } else {
                             $errors['picture'] = "Erreur lors de l'upload du fichier";
                         }
                     }
-
-                    //
                 }
             }
 

@@ -71,7 +71,7 @@ class Annonce
                 return [];
             }
             // requête SQL pour récupérer toute la table annonces
-            $sql = 'SELECT * FROM `annonces`';
+            $sql = 'SELECT `a_id`, `a_title`, `a_description`, `a_price`, `a_picture`, `a_publication`, `u_id`, `u_username` FROM `annonces` NATURAL JOIN `users`';
 
             // On prépare la requête avant de l'exécuter
             $stmt = $pdo->prepare($sql);
