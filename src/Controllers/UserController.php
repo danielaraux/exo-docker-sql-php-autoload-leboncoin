@@ -4,6 +4,7 @@
 namespace App\Controllers;
 
 use App\Models\User;
+use App\Models\Annonce;
 
 // On utilise le dossier virtuel namespace "Models" qui pointe sur le PokemonModel
 // use App\Models\PokemonModel;
@@ -13,6 +14,9 @@ class UserController
     // FONCTION PROFIL
     public function profil()
     {
+
+        $objannonceUser = new Annonce();
+        $annonceUser = $objannonceUser->findByUser($_SESSION['user']['id']);
 
         // Methode pour afficher les annonces de mon User
 

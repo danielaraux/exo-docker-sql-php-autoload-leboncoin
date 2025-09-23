@@ -87,9 +87,8 @@ footer {
 }
 
 .imgContainer {
-
-    border: 2px solid black;
-    width: 80%;
+    width: auto;
+    max-width: 500px;
 
     @media (max-width: 430px) {
         width: 80%;

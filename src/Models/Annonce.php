@@ -70,7 +70,7 @@ class Annonce
                 // return false;
                 return [];
             }
-            // requête SQL pour récupérer toute la table annonces
+            // requête SQL pour récupérer toute la table annonces avec le u_username pour afficher les photos de la galerie
             $sql = 'SELECT `a_id`, `a_title`, `a_description`, `a_price`, `a_picture`, `a_publication`, `u_id`, `u_username` FROM `annonces` NATURAL JOIN `users`';
 
             // On prépare la requête avant de l'exécuter
@@ -93,7 +93,7 @@ class Annonce
             if (!$pdo) {
                 return null;
             }
-
+            // Je récupère toutes les colonnes de ma table annonces, j'ajoute users pour avoir "u_username" en gardant le pointage sur a_id.
             $sql = 'SELECT `a_id`, `a_title`, `a_description`, `a_price`, `a_picture`, `a_publication`, `u_id`, `u_username` FROM `annonces` NATURAL JOIN `users` WHERE a_id = :id';
 
             $stmt = $pdo->prepare($sql);
@@ -102,6 +102,29 @@ class Annonce
 
             $annonce = $stmt->fetch(PDO::FETCH_ASSOC);
             return $annonce;
+        } catch (PDOException $e) {
+            return null;
+        }
+    }
+
+    public function findByUser(int $userId): ?array
+    {
+        try {
+            $pdo = Database::createInstancePDO();
+            if (!$pdo) {
+                return null;
+            }
+            // Je récupère toutes les colonnes de ma table annonces, j'ajoute users pour avoir "u_username" en gardant le pointage sur u_id.
+            //SELECT pour afficher tout ce que je veux voir comme détails en fonction de l'u_id
+            $sql = 'SELECT `a_id`, `a_title`, `a_description`, `a_price`, `a_picture`, `a_publication`, `u_id`, `u_username` FROM `annonces` NATURAL JOIN `users` WHERE u_id = :userId';
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
+            $stmt->execute();
+
+            // fetchAll pour faire un foreach du tableau
+            $annonceUser = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $annonceUser;
         } catch (PDOException $e) {
             return null;
         }

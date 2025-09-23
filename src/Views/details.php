@@ -29,7 +29,7 @@
                     src="<?= $annonce['a_picture'] !== "nophoto.jpg"
                                 ? '/uploads/' . $annonce['u_username'] . '/' . htmlspecialchars($annonce['a_picture'])
                                 : '/uploads/nophoto.jpg' ?>"
-                    class="img-fluid w-100 h-100 object-fit-contain"
+                    class="img-fluid w-100 h-100 object-fit-contain rounded"
                     alt="<?= htmlspecialchars($annonce['a_title']) ?>">
             </div>
 
