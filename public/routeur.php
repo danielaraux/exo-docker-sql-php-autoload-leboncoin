@@ -55,7 +55,6 @@ switch ($page) {
                 break;
 
         case 'details':
-                var_dump($id);
                 $objectController = new AnnonceController();
                 $objectController->show($id);
                 break;

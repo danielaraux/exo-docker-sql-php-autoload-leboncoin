@@ -29,7 +29,7 @@ class AnnonceController
                 $username = $_SESSION['user']['username'];
                 $uploads_dir = __DIR__ . '/../../public/uploads/';
                 $user_dir = $uploads_dir . $username . '/';
-
+                $picture = "nophoto.jpg";
 
                 if ($_FILES['picture']['error'] === 0) {
 

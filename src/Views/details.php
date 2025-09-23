@@ -22,29 +22,39 @@
         ?>
 
         <h2 class="text-center">Détails de l'annonce :</h2>
-        <div class="displayContainer">
+
+        <div class="btn-container">
+            <a href="index.php?url=annonces" class="btn">Retour aux annonces</a>
+        </div>
+        <div class="detailsContainer row my-4 border mx-auto rounded p-4 shadow">
             <!-- Image -->
-            <div class="imgContainer mx-auto mb-5">
-                <img
-                    src="<?= $annonce['a_picture'] !== "nophoto.jpg"
-                                ? '/uploads/' . $annonce['u_username'] . '/' . htmlspecialchars($annonce['a_picture'])
-                                : '/uploads/nophoto.jpg' ?>"
-                    class="img-fluid w-100 h-100 object-fit-contain rounded"
-                    alt="<?= htmlspecialchars($annonce['a_title']) ?>">
+            <div class="col-md-5 col-9 mx-auto mb-5">
+                <div class="card col-md-7">
+                    <img
+                        src="<?= $annonce['a_picture'] !== "nophoto.jpg"
+                                    ? '/uploads/' . $annonce['u_username'] . '/' . htmlspecialchars($annonce['a_picture'])
+                                    : '/uploads/nophoto.jpg' ?>"
+                        class="rounded"
+                        alt="<?= htmlspecialchars($annonce['a_title']) ?>">
+
+                </div>
+                <?php if ($annonce['a_picture'] == "nophoto.jpg") { ?>
+                    <p class="my-2 ms-3"><i>Pas de photo ajoutée à l'annonce</i></p>
+                <?php } ?>
+
             </div>
 
             <!-- Contenu -->
-            <div class="col-12 col-md-7">
+            <div class="col-md-7">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h3 class="card-title"><?= htmlspecialchars($annonce['a_title']) ?></h3>
-                    <a href="index.php?url=annonces" class="btn">Retour aux annonces</a>
                 </div>
 
                 <p class="card-text">Date de création : <?= htmlspecialchars($annonce['a_publication']) ?></p>
 
                 <p class="fw-bold fs-5">Prix : <?= htmlspecialchars($annonce['a_price']) ?> €</p>
 
-                <p class="card-text">
+                <p class="card-text my-5">
                     <?= htmlspecialchars($annonce['a_description']) ?>
                 </p>
 

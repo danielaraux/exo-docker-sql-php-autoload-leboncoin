@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -22,7 +18,6 @@
 
     <main class="min-vh-100 container my-5">
 
-
         <div class="card">
             <div class="m-3">
                 <h2>Votre Profil :</h2>
@@ -34,6 +29,18 @@
         <div class="my-3">
             <h2>Mes Annonces : </h2>
         </div>
+
+        <?php
+        // var_dump($annonceUser);
+        if (empty($annonceUser)) { ?>
+            <p>Il n'y a pas d'annonces à afficher.<span> <a href="index.php?url=create">Créer une annonce</a></span></p>
+        <?php } ?>
+
+
+
+
+
+
 
         <div class="row g-3 my-2">
             <?php foreach ($annonceUser as $annonces) { ?>
@@ -57,6 +64,10 @@
                             <a href="index.php?url=details/<?= $annonces['a_id'] ?>"
                                 class="btn mt-auto">
                                 Voir les détails de l'annonce
+                            </a>
+                            <a href=""
+                                class="btn bg-danger mt-3">
+                                Supprimer l'annonce
                             </a>
                         </div>
                     </div>
