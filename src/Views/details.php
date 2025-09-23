@@ -17,15 +17,19 @@
 
     <main class="min-vh-100 container my-4">
 
+        <?php
+        // var_dump($annonce);
+        ?>
+
         <h2 class="text-center">Détails de l'annonce :</h2>
         <div class="displayContainer">
             <!-- Image -->
             <div class="imgContainer mx-auto mb-5">
                 <img
                     src="<?= $annonce['a_picture'] !== "nophoto.jpg"
-                                ? '/uploads/' . $_SESSION['user']['username'] . '/' . htmlspecialchars($annonce['a_picture'])
+                                ? '/uploads/' . $annonce['u_username'] . '/' . htmlspecialchars($annonce['a_picture'])
                                 : '/uploads/nophoto.jpg' ?>"
-                    class="img-fluid w-100 h-100 object-fit-contain rounded"
+                    class="img-fluid w-100 h-100 object-fit-contain"
                     alt="<?= htmlspecialchars($annonce['a_title']) ?>">
             </div>
 

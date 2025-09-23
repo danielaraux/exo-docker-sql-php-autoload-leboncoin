@@ -94,13 +94,14 @@ class Annonce
                 return null;
             }
 
-            $sql = 'SELECT * FROM `annonces` WHERE a_id = :id';
+            $sql = 'SELECT `a_id`, `a_title`, `a_description`, `a_price`, `a_picture`, `a_publication`, `u_id`, `u_username` FROM `annonces` NATURAL JOIN `users` WHERE a_id = :id';
+
             $stmt = $pdo->prepare($sql);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
 
             $annonce = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $annonce ?: null;
+            return $annonce;
         } catch (PDOException $e) {
             return null;
         }

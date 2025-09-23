@@ -1,6 +1,5 @@
 <?php
 
-
 // Nom du dossier virtuel "namespace" pour les Controllers
 namespace App\Controllers;
 
@@ -20,11 +19,6 @@ class UserController
 
         require_once __DIR__ . "/../Views/profil.php";
     }
-
-
-
-
-
 
     // FONCTION QUI S'EXECUTE SUR LA VUE DU FORMULAIRE
     public function register()
