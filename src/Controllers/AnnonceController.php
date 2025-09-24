@@ -113,25 +113,30 @@ class AnnonceController
     public function delete($id, $userId)
     {
 
-
-
         $objdeleteAnnonce = new Annonce();
-        $deleteAnnonce = $objdeleteAnnonce->deletebyId((int) $id, (int) $userId);
 
-        $username = $_SESSION['user']['username'];
-        $uploads_dir = __DIR__ . '/../../public/uploads/';
-        $user_dir = $uploads_dir . $username . '/';
+        $annonceInfo = $objdeleteAnnonce->findById($id);
+
+        $pictureName = $annonceInfo['a_picture'];
+
+
+
+        $deleteAnnonce = $objdeleteAnnonce->deletebyId((int) $id, (int) $userId);
 
         // var_dump($deleteAnnonce);
         // ça retourne bien true si ça fonctionne
 
-        // if ($deleteAnnonce === true) {
-        //     if (empty($user_dir)) {
 
-        //         rmdir($user_dir, 0755, true);
-        //         var_dump("Ca fonctionne bien");
-        //     }
-        // }
+
+        if ($deleteAnnonce === true) {
+
+            @unlink("/uploads/" . $_SESSION['user']['username'] . "/" . $pictureName);
+
+            // if (empty($user_dir)) {
+            //     // var_dump($user_dir);
+            //     rmdir($user_dir);
+            // }
+        }
 
         header("Location: index.php?url=profil");
     }
