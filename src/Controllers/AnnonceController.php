@@ -109,8 +109,6 @@ class AnnonceController
         require_once __DIR__ . '/../Views/details.php';
     }
 
-
-
     // FONCTION DELETE
     // $id sera ce qui s'ajoute après delete/ qui est le numéro id de l'annonce et on ajoutera / et l'userId
     public function delete($id, $userId)
@@ -145,9 +143,13 @@ class AnnonceController
     }
 
     // FONCTION UPDATE
-    public function update($id, $userId)
+    public function update($id, $title, $description, $price, $userId)
     {
         $objupdateAnnonce = new Annonce();
-        $annonceUpdate = $objupdateAnnonce->updateAnnonce($id, $userId);
+        $annonceUpdate = $objupdateAnnonce->updateAnnonce($id, $title, $description, $price, $userId);
+
+        //logique
+
+        require_once __DIR__ . '/../Views/edit.php';
     }
 }

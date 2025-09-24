@@ -30,7 +30,8 @@
         </div>
 
         <?php if (empty($annonceUser)) { ?>
-            <p>Il n'y a pas d'annonces à afficher.<span> <a href="index.php?url=create">Créer une annonce</a></span></p>
+            <p>Il n'y a pas d'annonces à afficher.</p>
+            <a href="index.php?url=create">Créer une annonce</a>
         <?php } ?>
 
         <div class="row g-3 my-2">

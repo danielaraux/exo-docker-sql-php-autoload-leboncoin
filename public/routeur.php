@@ -13,6 +13,9 @@ $page = $arrayUrl[0] ?? 'home'; // je récupère l'index pour la page
 
 $id = $arrayUrl[1] ?? null;
 
+var_dump($_SESSION);
+// vérifier le $_session sur le routeur en update
+
 
 
 switch ($page) {
@@ -63,14 +66,13 @@ switch ($page) {
         // à faire
         case 'update':
                 $objectController = new AnnonceController();
-                $objectController->show($id);
+                $objectController->update($id, $_SESSION['user']['title'], $_SESSION['user']['description'], $_SESSION['user']['price'], $_SESSION['user']['id']);
                 break;
 
         case 'delete':
                 $objectController = new AnnonceController();
                 $objectController->delete($id, $_SESSION['user']['id']); // Ma fonction prend deux arguments, l'annonce id et l'user id qu'on défini en haut
                 break;
-        // à faire
 
         default:
                 require_once __DIR__ . "/../src/Views/page404.php";

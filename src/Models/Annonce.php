@@ -154,7 +154,8 @@ class Annonce
     }
 
 
-    public function updateAnnonce(int $id, int $userId): bool|null
+    // Fonction pour update une annonce
+    public function updateAnnonce(int $id, string $title, string $description, int $price, int $userId): bool|null
     {
 
         try {
@@ -163,14 +164,14 @@ class Annonce
                 return null;
             }
             // Je supprime toutes les colonnes de ma table annonces, pour le cas ou on pointe sur le annonce id et sur l'user id
-            $sql = 'UPDATE `a_title`, `a_description`, `a_price`, `a_picture`, `a_publication` FROM `annonces` WHERE a_id = :id AND u_id = :userId';
-
-            // $sql = 'UPDATE annonces SET a_title = :title, a_description = :description,  WHERE a_id = :id AND u_id = :userId';
-
+            $sql = 'UPDATE `annonces` SET a_title = :title, a_description = :descriptionannonce, a_price = :price WHERE a_id = :id AND u_id = :userId';
 
             $stmt = $pdo->prepare($sql);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
+            $stmt->bindValue(':title', $title, PDO::PARAM_INT);
+            $stmt->bindValue(':descriptionannonce', $description, PDO::PARAM_INT);
+            $stmt->bindValue(':price', $price, PDO::PARAM_INT);
             $stmt->execute();
 
             // on retourne true si l'execute a bien fonctionné
