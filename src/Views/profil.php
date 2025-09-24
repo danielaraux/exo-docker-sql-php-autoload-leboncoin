@@ -12,9 +12,7 @@
 <body>
     <header class="sticky-top border-bottom shadow">
         <?php include_once __DIR__ . "/templates/navbar.php" ?>
-
     </header>
-
 
     <main class="min-vh-100 container my-5">
 
@@ -26,21 +24,14 @@
                 <div class="my-2"><b>Date d'inscription : </b><?= $_SESSION['user']['inscription'] ?></div>
             </div>
         </div>
+
         <div class="my-3">
             <h2>Mes Annonces : </h2>
         </div>
 
-        <?php
-        // var_dump($annonceUser);
-        if (empty($annonceUser)) { ?>
+        <?php if (empty($annonceUser)) { ?>
             <p>Il n'y a pas d'annonces à afficher.<span> <a href="index.php?url=create">Créer une annonce</a></span></p>
         <?php } ?>
-
-
-
-
-
-
 
         <div class="row g-3 my-2">
             <?php foreach ($annonceUser as $annonces) { ?>
@@ -60,22 +51,48 @@
                             <p class="card-text">Date de création : <?= htmlspecialchars($annonces['a_publication']) ?></p>
                             <p class="card-text">Prix : <b><?= htmlspecialchars($annonces['a_price']) ?> €</b></p>
 
-                            <!-- lien avec l'ID de l'annonce -->
-                            <a href="index.php?url=details/<?= $annonces['a_id'] ?>"
-                                class="btn mt-auto">
+                            <!-- Voir les détails de l'annonce -->
+                            <a href="index.php?url=details/<?= $annonces['a_id'] ?>" class="btn mt-auto">
                                 Voir les détails de l'annonce
                             </a>
-                            <a href=""
-                                class="btn bg-danger mt-3">
-                                Supprimer l'annonce
+
+                            <!-- Modifier l'annonce -->
+                            <a href="" class="btn bg-secondary mt-3">
+                                Modifier l'annonce
                             </a>
+
+                            <!-- Supprimer l'annonce -->
+                            <!-- Bouton qui déclenche la modale -->
+                            <button type="button" class="btn bg-danger mt-3"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modal-<?= $annonces['a_id'] ?>">
+                                Supprimer l'annonce
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MODAL DE SUPPRESSION POUR CHAQUE ANNONCE -->
+                <div class="modal fade" id="modal-<?= $annonces['a_id'] ?>" tabindex="-1" aria-labelledby="modalLabel-<?= $annonces['a_id'] ?>" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5 text-danger" id="modalLabel-<?= $annonces['a_id'] ?>">SUPPRESSION DE L'ANNONCE</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>L'annonce <b><?= htmlspecialchars($annonces['a_title']) ?></b> va être complètement supprimée.</p>
+                                <p><b>Voulez-vous vraiment supprimer cette annonce ? (Irréversible)</b></p>
+                            </div>
+                            <div class="modal-footer mb-2">
+                                <a href="index.php?url=profil" class="btn bg-secondary mt-3 me-3">Retour</a>
+                                <a href="index.php?url=delete/<?= $annonces['a_id'] ?>" class="btn bg-danger mt-3">Supprimer l'annonce</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             <?php } ?>
         </div>
-
-
     </main>
 
     <footer class="text-center py-2">

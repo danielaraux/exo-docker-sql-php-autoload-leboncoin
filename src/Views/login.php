@@ -21,9 +21,9 @@
 
 
     <main class="container">
-        <div class="mx-auto p-3 my-4">
+        <div class="card shadow mx-auto p-3 my-4">
 
-            <h2 class="text-center">Se connecter</h2>
+            <h2 class="text-center mt-3">Se connecter</h2>
             <form action="" method="post" class="form-container mx-auto my-4">
 
                 <!-- EMAIL -->

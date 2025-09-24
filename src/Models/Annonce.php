@@ -129,4 +129,27 @@ class Annonce
             return null;
         }
     }
+
+    // La fonction delete vérifie l'id de l'annonce et celle du user (deux paramètres)
+    public function deletebyId(int $id, int $userId): bool|null
+    {
+        try {
+            $pdo = Database::createInstancePDO();
+            if (!$pdo) {
+                return null;
+            }
+            // Je supprime toutes les colonnes de ma table annonces, pour le cas ou on pointe sur le annonce id et sur l'user id
+            $sql = 'DELETE FROM `annonces` WHERE a_id = :id AND u_id = :userId';
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
+            $stmt->execute();
+
+            // on retourne true si l'execute a bien fonctionné
+            return true;
+        } catch (PDOException $e) {
+            return null;
+        }
+    }
 }

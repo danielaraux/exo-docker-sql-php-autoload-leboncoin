@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -21,9 +17,9 @@
 
 
     <main class="container min-vh-100">
-        <div class="mx-auto p-3 my-4">
+        <div class="card shadow mx-auto p-3 my-4">
 
-            <h2 class="text-center">Formulaire d'inscription</h2>
+            <h2 class="text-center mt-3">Formulaire d'inscription</h2>
             <form method="post" class="form-container mx-auto my-4">
 
                 <!-- USERNAME -->

@@ -108,4 +108,12 @@ class AnnonceController
 
         require_once __DIR__ . '/../Views/details.php';
     }
+
+    // $id sera ce qui s'ajoute après delete/ qui est le numéro id de l'annonce et on ajoutera / et l'userId
+    public function delete($id, $userId)
+    {
+        $objdeleteAnnonce = new Annonce();
+        $deleteAnnonce = $objdeleteAnnonce->deletebyId((int) $id, (int) $userId);
+        header("Location: index.php?url=profil");
+    }
 }

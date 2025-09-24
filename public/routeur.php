@@ -12,6 +12,7 @@ $page = $arrayUrl[0] ?? 'home'; // je récupère l'index pour la page
 
 
 $id = $arrayUrl[1] ?? null;
+$userId = $_SESSION['user']['id'];
 
 
 
@@ -58,6 +59,19 @@ switch ($page) {
                 $objectController = new AnnonceController();
                 $objectController->show($id);
                 break;
+
+
+        // à faire
+        case 'modify':
+                $objectController = new AnnonceController();
+                $objectController->show($id);
+                break;
+
+        case 'delete':
+                $objectController = new AnnonceController();
+                $objectController->delete($id, $userId); // Ma fonction prend deux arguments, l'annonce id et l'user id qu'on défini en haut
+                break;
+        // à faire
 
         default:
                 require_once __DIR__ . "/../src/Views/page404.php";
