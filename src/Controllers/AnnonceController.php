@@ -112,8 +112,27 @@ class AnnonceController
     // $id sera ce qui s'ajoute après delete/ qui est le numéro id de l'annonce et on ajoutera / et l'userId
     public function delete($id, $userId)
     {
+
+
+
         $objdeleteAnnonce = new Annonce();
         $deleteAnnonce = $objdeleteAnnonce->deletebyId((int) $id, (int) $userId);
+
+        $username = $_SESSION['user']['username'];
+        $uploads_dir = __DIR__ . '/../../public/uploads/';
+        $user_dir = $uploads_dir . $username . '/';
+
+        // var_dump($deleteAnnonce);
+        // ça retourne bien true si ça fonctionne
+
+        // if ($deleteAnnonce === true) {
+        //     if (empty($user_dir)) {
+
+        //         rmdir($user_dir, 0755, true);
+        //         var_dump("Ca fonctionne bien");
+        //     }
+        // }
+
         header("Location: index.php?url=profil");
     }
 }

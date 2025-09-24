@@ -12,7 +12,6 @@ $page = $arrayUrl[0] ?? 'home'; // je récupère l'index pour la page
 
 
 $id = $arrayUrl[1] ?? null;
-$userId = $_SESSION['user']['id'];
 
 
 
@@ -69,7 +68,7 @@ switch ($page) {
 
         case 'delete':
                 $objectController = new AnnonceController();
-                $objectController->delete($id, $userId); // Ma fonction prend deux arguments, l'annonce id et l'user id qu'on défini en haut
+                $objectController->delete($id, $_SESSION['user']['id']); // Ma fonction prend deux arguments, l'annonce id et l'user id qu'on défini en haut
                 break;
         // à faire
 
