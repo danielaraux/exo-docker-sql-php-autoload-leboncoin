@@ -112,9 +112,6 @@ class AnnonceController
 
 
 
-
-
-
     // $id sera ce qui s'ajoute après delete/ qui est le numéro id de l'annonce et on ajoutera / et l'userId
     public function delete($id, $userId)
     {
@@ -132,9 +129,9 @@ class AnnonceController
             // On supprime l'annonce via la methode deletebyId
             $deleteAnnonce = $objdeleteAnnonce->deletebyId((int) $id, (int) $userId);
 
-
             if ($deleteAnnonce === true) {
                 unlink("uploads/" . $_SESSION['user']['username'] . "/" . $pictureName);
+                header("Location: index.php?url=profil");
             } else {
                 header("Location: index.php?url=profil");
             }
