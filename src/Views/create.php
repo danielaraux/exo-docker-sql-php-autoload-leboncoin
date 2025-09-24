@@ -21,7 +21,7 @@
 
     <main class="min-vh-100 container my-5">
 
-        <div class="mx-auto p-3 my-4">
+        <div class="mx-auto p-3 my-4 card shadow">
 
             <h2 class="text-center">Créer une annonce</h2>
             <form method="post" class="form-container mx-auto my-4" enctype="multipart/form-data">

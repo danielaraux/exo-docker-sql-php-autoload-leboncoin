@@ -57,7 +57,7 @@
                             </a>
 
                             <!-- Modifier l'annonce -->
-                            <a href="" class="btn bg-secondary mt-3">
+                            <a href="index.php?url=update/<?= $annonces['a_id'] ?>" class="btn bg-secondary mt-3">
                                 Modifier l'annonce
                             </a>
 

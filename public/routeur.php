@@ -61,7 +61,7 @@ switch ($page) {
 
 
         // à faire
-        case 'modify':
+        case 'update':
                 $objectController = new AnnonceController();
                 $objectController->show($id);
                 break;
