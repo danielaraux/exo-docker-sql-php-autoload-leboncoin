@@ -109,35 +109,58 @@ class AnnonceController
         require_once __DIR__ . '/../Views/details.php';
     }
 
+
+
+
+
     // $id sera ce qui s'ajoute après delete/ qui est le numéro id de l'annonce et on ajoutera / et l'userId
     public function delete($id, $userId)
     {
-
+        // On récupère l'annonce avec l'id via la méthode findById
         $objdeleteAnnonce = new Annonce();
-
         $annonceInfo = $objdeleteAnnonce->findById($id);
 
+        // On récupère le nom de la photo pour la supprimer ensuite localement
         $pictureName = $annonceInfo['a_picture'];
 
-
-
+        // On supprime l'annonce via la methode deletebyId
         $deleteAnnonce = $objdeleteAnnonce->deletebyId((int) $id, (int) $userId);
+
+
+
+        // $filePath = "/var/www/public/uploads/" . $_SESSION['user']['username'] . "/" . $pictureName;
+
+        // if (file_exists($filePath)) {
+        //     if (unlink($filePath)) {
+        //         echo "Fichier supprimé : " . $filePath;
+        //     } else {
+        //         echo "Impossible de supprimer : " . $filePath;
+        //     }
+        // } else {
+        //     echo "Fichier introuvable : " . $filePath;
+        // }
+
 
         // var_dump($deleteAnnonce);
         // ça retourne bien true si ça fonctionne
 
-
-
         if ($deleteAnnonce === true) {
+            unlink("/var/www/public/uploads/" . $_SESSION['user']['username'] . "/" . $pictureName);
 
-            @unlink("/uploads/" . $_SESSION['user']['username'] . "/" . $pictureName);
+            $user_dir = "/var/www/public/uploads/" . $_SESSION['user']['username'];
 
-            // if (empty($user_dir)) {
-            //     // var_dump($user_dir);
-            //     rmdir($user_dir);
-            // }
+            $username = $_SESSION['user']['username'];
+            $uploads_dir = __DIR__ . '/../../public/uploads/';
+            $user_dir = $uploads_dir . $username . '/';
+
+            if (empty($user_dir)) {
+                // var_dump($user_dir);
+                var_dump("c'est bon");
+                var_dump($user_dir);
+                // rmdir($user_dir);
+            }
         }
 
-        header("Location: index.php?url=profil");
+        // header("Location: index.php?url=profil");
     }
 }
