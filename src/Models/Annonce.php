@@ -86,12 +86,12 @@ class Annonce
         }
     }
 
-    public function findById(int $id): ?array
+    public function findById(int $id): array|bool
     {
         try {
             $pdo = Database::createInstancePDO();
             if (!$pdo) {
-                return null;
+                return false;
             }
             // Je récupère toutes les colonnes de ma table annonces, j'ajoute users pour avoir "u_username" en gardant le pointage sur a_id.
             $sql = 'SELECT `a_id`, `a_title`, `a_description`, `a_price`, `a_picture`, `a_publication`, `u_id`, `u_username` FROM `annonces` NATURAL JOIN `users` WHERE a_id = :id';
@@ -103,7 +103,7 @@ class Annonce
             $annonce = $stmt->fetch(PDO::FETCH_ASSOC);
             return $annonce;
         } catch (PDOException $e) {
-            return null;
+            return false;
         }
     }
 
