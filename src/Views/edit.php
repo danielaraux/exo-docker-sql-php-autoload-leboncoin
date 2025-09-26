@@ -15,7 +15,7 @@
 
     </header>
 
-    <main class="min-vh-100 container border my-4">
+    <main class="min-vh-100 container my-4">
 
         <h2 class="text-center">Modifier l'annonce :</h2>
 
@@ -25,15 +25,15 @@
 
         <form method="post" class="mx-auto my-4" enctype="multipart/form-data">
 
-            <div class="detailsContainer row my-4 border mx-auto rounded p-4 shadow">
+            <div class="row my-4 border mx-auto rounded p-4 shadow">
                 <!-- Image -->
-                <div class="col-md-5 col-9 mx-auto mb-5">
-                    <div class="card col-md-7">
+                <div class="container-card col-md-5 col-9 mx-auto mb-5">
+                    <div class="card col-md-7 w-100 mx-auto border-0">
                         <img
                             src="<?= $annonceInfo['a_picture'] !== "nophoto.jpg"
                                         ? '/uploads/' . $annonceInfo['u_username'] . '/' . ($annonceInfo['a_picture'])
                                         : '/uploads/nophoto.jpg' ?>"
-                            class="rounded"
+                            class="img-annonce rounded d-block mx-auto"
                             alt="Photo de l'annonce <?= ($annonceInfo['a_title']) ?>">
 
                     </div>
@@ -42,7 +42,7 @@
                     <?php } ?>
 
                     <!-- Image -->
-                    <div class="my-3">
+                    <div class="img-change mx-auto my-3">
                         <label for="photo" class="form-label">
                             <div><b>Changer la photo : (facultatif)</b></div>
                             <div><i>Formats valides : jpeg, jpg, webp, png.</i></div>

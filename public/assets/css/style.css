@@ -92,8 +92,16 @@ li>a:hover {
 }
 
 .img-annonce {
-    max-width: 90%;
+    max-width: 70%;
     max-height: 600px;
+}
+
+.img-change {
+    width: 80%;
+
+    @media (max-width:430px) {
+        width: 90%;
+    }
 }
 
 footer {
