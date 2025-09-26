@@ -41,25 +41,20 @@
                         <div class="w-100 h-50 d-flex align-items-center justify-content-center">
                             <img
                                 src="<?= $annonces['a_picture'] !== "nophoto.jpg"
-                                            ? '/uploads/' . $_SESSION['user']['username'] . '/' . htmlspecialchars($annonces['a_picture'])
+                                            ? '/uploads/' . $_SESSION['user']['username'] . '/' . ($annonces['a_picture'])
                                             : '/uploads/nophoto.jpg' ?>"
                                 class="img-fluid w-100 h-100 object-fit-contain"
-                                alt="<?= htmlspecialchars($annonces['a_title']) ?>">
+                                alt="<?= ($annonces['a_title']) ?>">
                         </div>
 
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title"><b><?= htmlspecialchars($annonces['a_title']) ?></b></h5>
-                            <p class="card-text">Date de création : <?= htmlspecialchars($annonces['a_publication']) ?></p>
-                            <p class="card-text">Prix : <b><?= htmlspecialchars($annonces['a_price']) ?> €</b></p>
+                            <h5 class="card-title"><b><?= ($annonces['a_title']) ?></b></h5>
+                            <p class="card-text">Date de création : <?= (new DateTime($annonces["a_publication"]))->format('d/m/Y') ?></p>
+                            <p class="card-text">Prix : <b><?= ($annonces['a_price']) ?> €</b></p>
 
                             <!-- Voir les détails de l'annonce -->
                             <a href="index.php?url=details/<?= $annonces['a_id'] ?>" class="btn mt-auto">
                                 Voir les détails de l'annonce
-                            </a>
-
-                            <!-- Modifier l'annonce -->
-                            <a href="index.php?url=update/<?= $annonces['a_id'] ?>" class="btn bg-secondary mt-3">
-                                Modifier l'annonce
                             </a>
 
                             <!-- Supprimer l'annonce -->
@@ -82,7 +77,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
                             </div>
                             <div class="modal-body">
-                                <p>L'annonce <b><?= htmlspecialchars($annonces['a_title']) ?></b> va être complètement supprimée.</p>
+                                <p>L'annonce <b><?= ($annonces['a_title']) ?></b> va être complètement supprimée.</p>
                                 <p><b>Voulez-vous vraiment supprimer cette annonce ? (Irréversible)</b></p>
                             </div>
                             <div class="modal-footer mb-2">

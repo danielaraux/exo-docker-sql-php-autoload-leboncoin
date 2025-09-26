@@ -13,9 +13,11 @@ $page = $arrayUrl[0] ?? 'home'; // je récupère l'index pour la page
 
 $id = $arrayUrl[1] ?? null;
 
-var_dump($_SESSION);
-// vérifier le $_session sur le routeur en update
+// var_dump($_SESSION);
+// vérifier le $_session sur le routeur en edit
 
+// var_dump($_FILES);
+// var_dump($_POST);
 
 
 switch ($page) {
@@ -64,9 +66,9 @@ switch ($page) {
 
 
         // à faire
-        case 'update':
+        case 'edit':
                 $objectController = new AnnonceController();
-                $objectController->update($id, $_SESSION['user']['title'], $_SESSION['user']['description'], $_SESSION['user']['price'], $_SESSION['user']['id']);
+                $objectController->edit($id, $_SESSION['user']['id']);
                 break;
 
         case 'delete':

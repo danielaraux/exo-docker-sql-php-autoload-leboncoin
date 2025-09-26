@@ -49,7 +49,7 @@ class Annonce
             $stmt->bindValue(':description', $description, PDO::PARAM_STR);
             $stmt->bindValue(':price', $price, PDO::PARAM_STR);
             $stmt->bindValue(':picture', $picture, PDO::PARAM_STR);
-            $stmt->bindValue(':id', $userId, PDO::PARAM_STR);
+            $stmt->bindValue(':id', $userId, PDO::PARAM_INT);
 
             // On exécute la requête préparée. La méthode renvoie true si tout s’est bien passé,
             // false sinon. 
@@ -71,7 +71,7 @@ class Annonce
                 return [];
             }
             // requête SQL pour récupérer toute la table annonces avec le u_username pour afficher les photos de la galerie
-            $sql = 'SELECT `a_id`, `a_title`, `a_description`, `a_price`, `a_picture`, `a_publication`, `u_id`, `u_username` FROM `annonces` NATURAL JOIN `users`';
+            $sql = 'SELECT `a_id`, `a_title`, `a_description`, `a_price`, `a_picture`, `a_publication`, `u_id`, `u_username` FROM `annonces` NATURAL JOIN `users` ORDER BY `a_publication` DESC';
 
             // On prépare la requête avant de l'exécuter
             $stmt = $pdo->prepare($sql);
@@ -154,8 +154,8 @@ class Annonce
     }
 
 
-    // Fonction pour update une annonce
-    public function updateAnnonce(int $id, string $title, string $description, int $price, int $userId): bool|null
+    // // Fonction pour update une annonce
+    public function editAnnonce(int $id, string $title, string $description, float $price, string $picture, int $userId)
     {
 
         try {
@@ -164,18 +164,18 @@ class Annonce
                 return null;
             }
             // Je supprime toutes les colonnes de ma table annonces, pour le cas ou on pointe sur le annonce id et sur l'user id
-            $sql = 'UPDATE `annonces` SET a_title = :title, a_description = :descriptionannonce, a_price = :price WHERE a_id = :id AND u_id = :userId';
+            $sql = 'UPDATE `annonces` SET a_title = :title, a_description = :descriptionannonce, a_price = :price, a_picture = :picture WHERE a_id = :id AND u_id = :userId';
 
             $stmt = $pdo->prepare($sql);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->bindValue(':title', $title, PDO::PARAM_STR);
+            $stmt->bindValue(':descriptionannonce', $description, PDO::PARAM_STR);
+            $stmt->bindValue(':price', $price, PDO::PARAM_STR);
+            $stmt->bindValue(':picture', $picture, PDO::PARAM_STR);
             $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
-            $stmt->bindValue(':title', $title, PDO::PARAM_INT);
-            $stmt->bindValue(':descriptionannonce', $description, PDO::PARAM_INT);
-            $stmt->bindValue(':price', $price, PDO::PARAM_INT);
-            $stmt->execute();
 
-            // on retourne true si l'execute a bien fonctionné
-            return true;
+            // ça va retourner un booleen true si ça a fonctionné, false sinon
+            return $stmt->execute();
         } catch (PDOException $e) {
             return null;
         }

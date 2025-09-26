@@ -46,14 +46,15 @@
                 <div class="mb-3">
                     <label for="price" class="form-label">
                         <b>Prix : (en Euros) </b><span class="text-danger">* <i><?= isset($errors['price']) ? htmlspecialchars($errors['price']) : '' ?></i></span>
+                        <i>ex. 1.50 pour 1.50€</i>
                     </label>
-                    <input type="number" name="price" class="form-control" id="price" step="any" min="1" placeholder="Entrez le prix..." value="<?= $_POST['price'] ?? "" ?>">
+                    <input type="number" name="price" class="form-control" id="price" step="0.01" min="1" placeholder="Entrez le prix..." value="<?= $_POST['price'] ?? "" ?>">
                 </div>
 
                 <!-- Photo -->
                 <div class="mb-3">
                     <label for="photo" class="form-label">
-                        <b>Photo :</b> (facultatif) formats valides : jpeg, jpg, webp, png. Taille maximum : 2 Mo.
+                        <b>Photo :</b> (facultatif) formats valides : jpeg, jpg, webp, png. Taille maximum : 8 Mo.
                         <div class="text-danger my-2"><b><i><?= isset($errors['picture']) ? htmlspecialchars($errors['picture']) : '' ?></i></b></div>
                     </label>
                     <div class="custom-file">

@@ -22,8 +22,6 @@ class AnnonceController
                 $errors['price'] = 'Prix obligatoire';
             }
 
-            // var_dump($_FILES);
-
             if (empty($errors)) {
 
                 $username = $_SESSION['user']['username'];
@@ -117,39 +115,123 @@ class AnnonceController
         $objdeleteAnnonce = new Annonce();
         $annonceInfo = $objdeleteAnnonce->findById($id);
 
-        if ($annonceInfo == false) {
-            header("Location: index.php?url=home");
+        // Si l'utilisateur n'est pas le bon, retour à la page 404
+        if ($annonceInfo['u_id'] !== $_SESSION['user']['id']) {
+            header("Location: index.php?url=page404.php");
         } else {
 
-            // On récupère le nom de la photo pour la supprimer ensuite localement
-            $pictureName = $annonceInfo['a_picture'];
+            if ($annonceInfo == false) {
+                header("Location: index.php?url=home");
+            } else {
 
-            // On supprime l'annonce via la methode deletebyId
-            $deleteAnnonce = $objdeleteAnnonce->deletebyId((int) $id, (int) $userId);
+                // On récupère le nom de la photo pour la supprimer ensuite localement
+                $pictureName = $annonceInfo['a_picture'];
 
-            // var_dump($deleteAnnonce);
-            if ($deleteAnnonce == true) {
-                if ($pictureName !== "nophoto.jpg") {
-                    unlink("uploads/" . $_SESSION['user']['username'] . "/" . $pictureName);
-                    header("Location: index.php?url=profil");
-                    //
+                // On supprime l'annonce via la methode deletebyId
+                $deleteAnnonce = $objdeleteAnnonce->deletebyId((int) $id, (int) $userId);
+
+                // var_dump($deleteAnnonce);
+                if ($deleteAnnonce == true) {
+                    if ($pictureName !== "nophoto.jpg") {
+                        unlink("uploads/" . $_SESSION['user']['username'] . "/" . $pictureName);
+                        header("Location: index.php?url=profil");
+                        //
+                    } else {
+                        header("Location: index.php?url=profil");
+                    }
                 } else {
                     header("Location: index.php?url=profil");
                 }
-            } else {
-                header("Location: index.php?url=profil");
             }
         }
     }
 
     // FONCTION UPDATE
-    public function update($id, $title, $description, $price, $userId)
+    public function edit(int $id, int $userId)
     {
-        $objupdateAnnonce = new Annonce();
-        $annonceUpdate = $objupdateAnnonce->updateAnnonce($id, $title, $description, $price, $userId);
+        // Je récupère les données de l'annonce auprès du Modèle pour les afficher dans la vue
+        $objgetannonceInfo = new Annonce();
+        $annonceInfo = $objgetannonceInfo->findById($id);
 
-        //logique
+        if ($annonceInfo['u_id'] !== $_SESSION['user']['id']) {
+            header("Location: index.php?url=page404.php");
+        } else {
 
-        require_once __DIR__ . '/../Views/edit.php';
+            if ($_SERVER["REQUEST_METHOD"] === "POST") {
+                $errors = [];
+
+                //// VERIFICATION DU FORMULAIRE ////
+                if (empty($_POST['title'])) {
+                    $errors['title'] = 'Titre obligatoire';
+                }
+                if (empty($_POST['description'])) {
+                    $errors['description'] = 'Description obligatoire';
+                }
+                if (empty($_POST['price'])) {
+                    $errors['price'] = 'Prix obligatoire';
+                }
+
+                $username = $_SESSION['user']['username'];
+                $uploads_dir = __DIR__ . '/../../public/uploads/';
+                $user_dir = $uploads_dir . $username . '/';
+
+                // On récupère le nom de la photo pour la supprimer ensuite localement
+                $oldPicture = $annonceInfo['a_picture'];
+
+                // Si le remplacement de photo fonctionne
+                if ($_FILES['picture']['error'] === 0) {
+                    $tmp_name = $_FILES['picture']['tmp_name'];
+                    $mime = mime_content_type($tmp_name);
+                    $allowed = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
+                    $maxSize = 8 * 1024 * 1024;
+                    $size = $_FILES['picture']['size'];
+
+                    if (!in_array($mime, $allowed)) {
+                        $errors['picture'] = "Type de fichier non autorisé, réessayez.";
+                    } elseif ($size > $maxSize) {
+                        $errors['picture'] = "Fichier trop lourd, réessayez.";
+                    } else {
+                        $extension = pathinfo($_FILES['picture']['name'], PATHINFO_EXTENSION);
+                        $newName = uniqid('', true) . '.' . $extension;
+                        $picture = $newName;
+
+                        // 🔑 Vérifie que le dossier existe
+                        if (!is_dir($user_dir)) {
+                            mkdir($user_dir, 0755, true);
+                        }
+
+                        // Supprime l’ancienne photo si besoin
+                        $oldFilePath = $user_dir . $oldPicture;
+                        if ($oldPicture !== "nophoto.jpg" && file_exists($oldFilePath)) {
+                            unlink($oldFilePath);
+                        }
+
+                        // Déplace la nouvelle
+                        if (!move_uploaded_file($tmp_name, $user_dir . $newName)) {
+                            $errors['picture'] = "Erreur lors de l'upload du fichier";
+                        }
+                    }
+                }
+
+                if (empty($errors)) {
+
+                    $title = $_POST['title'];
+                    $price = $_POST['price'];
+                    $description = $_POST['description'];
+
+                    if (empty($_FILES['picture']['name'])) {
+                        $picture = $oldPicture;
+                    }
+
+                    $objgetEditAnnonce = new Annonce();
+                    $objeditAnnonce = $objgetEditAnnonce->editAnnonce($id, $title, $description, $price, $picture, $userId);
+
+                    // Redirection vers la page détail de l'annonce
+                    header("Location: index.php?url=details/" . $annonceInfo['a_id']);
+                }
+            }
+
+            require_once __DIR__ . '/../Views/edit.php';
+        }
     }
 }

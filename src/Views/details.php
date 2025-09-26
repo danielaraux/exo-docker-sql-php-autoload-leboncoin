@@ -17,57 +17,58 @@
 
     <main class="min-vh-100 container my-4">
 
-        <?php
-        // var_dump($annonce);
-        ?>
-
         <h2 class="text-center">Détails de l'annonce :</h2>
 
         <div class="btn-container">
             <a href="index.php?url=annonces" class="btn">Retour aux annonces</a>
         </div>
-        <div class="detailsContainer row my-4 border mx-auto rounded p-4 shadow">
+        <div class="row my-4 border mx-auto rounded p-4 shadow">
             <!-- Image -->
-            <div class="col-md-5 col-9 mx-auto mb-5">
-                <div class="card col-md-7">
+            <div class="container-card col-md-5 col-9 mx-auto mb-5">
+                <div class="card col-md-7 w-100 mx-auto border-0">
                     <img
                         src="<?= $annonce['a_picture'] !== "nophoto.jpg"
-                                    ? '/uploads/' . $annonce['u_username'] . '/' . htmlspecialchars($annonce['a_picture'])
+                                    ? '/uploads/' . $annonce['u_username'] . '/' . ($annonce['a_picture'])
                                     : '/uploads/nophoto.jpg' ?>"
-                        class="rounded"
-                        alt="<?= htmlspecialchars($annonce['a_title']) ?>">
+                        class="img-annonce rounded d-block mx-auto"
+                        alt="<?= ($annonce['a_title']) ?>">
 
                 </div>
                 <?php if ($annonce['a_picture'] == "nophoto.jpg") { ?>
-                    <p class="my-2 ms-3"><i>Pas de photo ajoutée à l'annonce</i></p>
+                    <p class="my-2 text-center"><i>Pas de photo ajoutée à l'annonce</i></p>
                 <?php } ?>
+
+                <div class="d-flex justify-content-center mt-4">
+                    <?php
+                    if ($_SESSION['user']['id'] === $annonce['u_id']) { ?>
+                        <!-- Modifier l'annonce -->
+                        <a href="index.php?url=edit/<?= $annonce['a_id'] ?>" class="btn mt-3 w-50">
+                            Modifier l'annonce
+                        </a>
+
+                    <?php } else { ?>
+                        <a href="#" class="btn mt-2">Contacter le vendeur</a>
+                    <?php } ?>
+                </div>
 
             </div>
 
             <!-- Contenu -->
             <div class="col-md-7">
+
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h3 class="card-title"><?= htmlspecialchars($annonce['a_title']) ?></h3>
+                    <h3 class="card-title"><?= ($annonce['a_title']) ?></h3>
                 </div>
-
-                <p class="card-text">Date de création : <?= htmlspecialchars($annonce['a_publication']) ?></p>
-
-                <p class="fw-bold fs-5">Prix : <?= htmlspecialchars($annonce['a_price']) ?> €</p>
+                <p class="card-text">Date de création : <?= (new DateTime($annonce["a_publication"]))->format('d/m/Y') ?></p>
+                <p class="fw-bold fs-5">Prix : <?= ($annonce['a_price']) ?> €</p>
 
                 <p class="card-text my-5">
-                    <?= htmlspecialchars($annonce['a_description']) ?>
+                    <?= nl2br(htmlspecialchars($annonce['a_description'])) ?>
                 </p>
 
-                <div class="d-flex justify-content-center mt-4">
-                    <a href="#" class="btn">Contacter le vendeur</a>
-                </div>
             </div>
         </div>
     </main>
-
-
-
-
 
     <footer class="text-center py-2">
         <div>

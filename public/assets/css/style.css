@@ -41,7 +41,6 @@ h1>a {
     text-decoration: none;
 }
 
-
 .btn {
     background-color: #ff6e14;
     color: white;
@@ -79,19 +78,27 @@ li>a:hover {
 
     @media (max-width:430px) {
         display: flex;
+        width: 100%;
         justify-content: center;
         margin-top: 1.5em;
     }
 }
 
-.detailsContainer {
-    width: 95%;
+.container-card {
+    @media (max-width:430px) {
+        width: 100%;
+    }
+
+}
+
+.img-annonce {
+    max-width: 90%;
+    max-height: 600px;
 }
 
 footer {
     background-color: #2b3441;
 }
-
 
 .error-404 {
     color: #ff6e14;
@@ -110,7 +117,6 @@ footer {
     font-size: 2.5em;
     font-weight: bold;
 }
-
 
 /* Supprimer les flèches du champ input number sur Chrome */
 input[type=number]::-webkit-inner-spin-button,
