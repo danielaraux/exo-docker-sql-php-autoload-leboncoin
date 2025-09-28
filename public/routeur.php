@@ -4,6 +4,7 @@
 use App\Controllers\HomeController;
 use App\Controllers\UserController;
 use App\Controllers\AnnonceController;
+use App\Controllers\FavorisController;
 
 
 $url = $_GET['url'] ?? 'home'; // on défini la variable qui va récupérer l'url de l'index sinon, pointer sur home
@@ -67,6 +68,43 @@ switch ($page) {
                 $objectController = new AnnonceController();
                 $objectController->show($id);
                 break;
+
+
+        //
+        //
+
+        // liste de favoris du user
+        case 'favoris':
+                if (!isset($_SESSION['user'])) {
+                        require_once __DIR__ . "/../src/Views/page404.php";
+                        break;
+                }
+                $objectController = new FavorisController();
+                $objectController->index();
+                break;
+
+        // ajouter un favoris
+        case 'favoris/add':
+                if (!isset($_SESSION['user'])) {
+                        require_once __DIR__ . "/../src/Views/page404.php";
+                        break;
+                }
+                $objectController = new FavorisController();
+                $objectController->add($id);
+                break;
+
+        // supprimer un favoris
+        case 'favoris/remove':
+                if (!isset($_SESSION['user'])) {
+                        require_once __DIR__ . "/../src/Views/page404.php";
+                        break;
+                }
+                $objectController = new FavorisController();
+                $objectController->remove($id);
+                break;
+
+        //
+        //
 
         case 'edit':
                 if (!isset($_SESSION['user'])) {

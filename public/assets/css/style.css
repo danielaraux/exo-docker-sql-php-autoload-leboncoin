@@ -96,6 +96,10 @@ li>a:hover {
     max-height: 600px;
 }
 
+.bi-star-fill {
+    color: gold;
+}
+
 .btn:hover {
     opacity: 80%;
 }
