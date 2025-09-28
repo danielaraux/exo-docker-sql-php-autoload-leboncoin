@@ -19,12 +19,18 @@ class FavorisController
 
 
 
-    // ajoute le favoris + redirection
-    public function add(int $annonceId): void {}
+    // ajout du favoris et redirection
+    public function add(int $annonceId): void
+    {
+
+
+
+        require_once __DIR__ . '/../Views/home.php';
+    }
 
 
 
 
-    // supprime le favoris
+    // suppression du favoris
     public function remove(int $annonceId): void {}
 }

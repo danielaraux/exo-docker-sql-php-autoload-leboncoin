@@ -79,16 +79,19 @@ switch ($page) {
                         require_once __DIR__ . "/../src/Views/page404.php";
                         break;
                 }
+                echo 'bah oui';
                 $objectController = new FavorisController();
                 $objectController->index();
                 break;
 
         // ajouter un favoris
         case 'favoris/add':
+                echo 'Oui.';
                 if (!isset($_SESSION['user'])) {
                         require_once __DIR__ . "/../src/Views/page404.php";
                         break;
                 }
+                echo 'Oui';
                 $objectController = new FavorisController();
                 $objectController->add($id);
                 break;

@@ -25,8 +25,7 @@
                 <div class="col-6 col-sm-6 col-md-4 col-lg-3">
                     <div class="card h-100 d-flex flex-column shadow">
 
-                        <div class="text-end m-3"><a href="" class="btn">Ajouter aux favoris <i class="bi bi-star-fill"></i></a></div>
-                        <button class="btn"></button>
+                        <div class="text-end m-3 mb-4"><a href="index.php?url=favoris/add/<?= htmlspecialchars($annonce['a_id']) ?>" class="btn bg-secondary"><i class="bi bi-star"></i></a></div>
 
 
                         <div class="w-100 h-50 d-flex align-items-center justify-content-center">
