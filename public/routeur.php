@@ -13,6 +13,7 @@ $page = $arrayUrl[0] ?? 'home'; // je récupère l'index pour la page
 
 $id = $arrayUrl[1] ?? null;
 
+
 // var_dump($_SESSION);
 // vérifier le $_session sur le routeur en edit
 
@@ -35,11 +36,19 @@ switch ($page) {
                 break;
 
         case 'welcome':
+                if (!isset($_SESSION['user'])) {
+                        require_once __DIR__ . "/../src/Views/page404.php";
+                        break;
+                }
                 $objectController = new UserController();
                 $objectController->welcome();
                 break;
 
         case 'profil':
+                if (!isset($_SESSION['user'])) {
+                        require_once __DIR__ . "/../src/Views/page404.php";
+                        break;
+                }
                 $objectController = new UserController();
                 $objectController->profil();
                 break;
@@ -47,11 +56,6 @@ switch ($page) {
         case 'logout':
                 $objectController = new UserController();
                 $objectController->logout();
-                break;
-
-        case 'annonces':
-                $objectController = new AnnonceController();
-                $objectController->index();
                 break;
 
         case 'create':
@@ -64,14 +68,20 @@ switch ($page) {
                 $objectController->show($id);
                 break;
 
-
-        // à faire
         case 'edit':
+                if (!isset($_SESSION['user'])) {
+                        require_once __DIR__ . "/../src/Views/page404.php";
+                        break;
+                }
                 $objectController = new AnnonceController();
                 $objectController->edit($id, $_SESSION['user']['id']);
                 break;
 
         case 'delete':
+                if (!isset($_SESSION['user'])) {
+                        require_once __DIR__ . "/../src/Views/page404.php";
+                        break;
+                }
                 $objectController = new AnnonceController();
                 $objectController->delete($id, $_SESSION['user']['id']); // Ma fonction prend deux arguments, l'annonce id et l'user id qu'on défini en haut
                 break;

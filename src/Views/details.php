@@ -12,7 +12,6 @@
 <body>
     <header class="sticky-top border-bottom shadow">
         <?php include_once __DIR__ . "/templates/navbar.php" ?>
-
     </header>
 
     <main class="min-vh-100 container my-4">
@@ -20,7 +19,7 @@
         <h2 class="text-center">Détails de l'annonce :</h2>
 
         <div class="btn-container">
-            <a href="index.php?url=annonces" class="btn">Retour aux annonces</a>
+            <a href="index.php?url=home" class="btn">Retour aux annonces</a>
         </div>
         <div class="row my-4 border mx-auto rounded p-4 shadow">
             <!-- Image -->
@@ -40,9 +39,9 @@
 
                 <div class="d-flex justify-content-center mt-4">
                     <?php
-                    if ($_SESSION['user']['id'] === $annonce['u_id']) { ?>
+                    if (isset($_SESSION['user']) && ($_SESSION['user']['id'] === $annonce['u_id'])) { ?>
                         <!-- Modifier l'annonce -->
-                        <a href="index.php?url=edit/<?= $annonce['a_id'] ?>" class="btn mt-3 w-50">
+                        <a href="index.php?url=edit/<?= $annonce['a_id'] ?>" class="btn bg-dark mt-3 w-50">
                             Modifier l'annonce
                         </a>
 

@@ -20,7 +20,7 @@
         <h2 class="text-center">Modifier l'annonce :</h2>
 
         <div class="btn-container">
-            <a href="index.php?url=annonces" class="btn">Retour aux annonces</a>
+            <a href="index.php?url=home" class="btn">Retour aux annonces</a>
         </div>
 
         <form method="post" class="mx-auto my-4" enctype="multipart/form-data">
@@ -38,20 +38,22 @@
 
                     </div>
                     <?php if ($annonceInfo['a_picture'] == "nophoto.jpg") { ?>
-                        <p class="my-2 ms-3"><i>Pas de photo ajoutée à l'annonce</i></p>
+                        <p class="my-2 text-center"><i>Pas de photo ajoutée à l'annonce</i></p>
                     <?php } ?>
 
                     <!-- Image -->
-                    <div class="img-change mx-auto my-3">
-                        <label for="photo" class="form-label">
-                            <div><b>Changer la photo : (facultatif)</b></div>
-                            <div><i>Formats valides : jpeg, jpg, webp, png.</i></div>
-                            <div><i>Taille maximum : 8 Mo.</i></div>
+                    <div class="mx-auto my-3">
+                        <div class="w-75 mx-auto">
+                            <label for="photo" class="form-label">
+                                <div><b>Changer la photo : (facultatif)</b></div>
+                                <div><i>Formats valides : jpeg, jpg, webp, png.</i></div>
+                                <div><i>Taille maximum : 8 Mo.</i></div>
 
-                            <div class="text-danger my-2"><b><i><?= isset($errors['picture']) ? htmlspecialchars($errors['picture']) : '' ?></i></b></div>
-                        </label>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="picture" id="picture">
+                                <div class="text-danger my-2"><b><i><?= isset($errors['picture']) ? htmlspecialchars($errors['picture']) : '' ?></i></b></div>
+                            </label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="picture" id="picture">
+                            </div>
                         </div>
                     </div>
                 </div>

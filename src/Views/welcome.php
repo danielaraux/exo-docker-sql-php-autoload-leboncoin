@@ -20,8 +20,7 @@
         <h2 class="mt-5 text-center">Bienvenue <?= htmlspecialchars($_SESSION['username']) ?> ! Votre compte a bien été crée.</h2>
 
         <div class="text-center mt-5">
-
-            <button class="btn"><a href="index.php?url=login" class="text-decoration-none text-light">Connectez-vous !</a></button>
+            <a href="index.php?url=login" class="btn text-decoration-none text-light">Connectez-vous !</a>
         </div>
 
     </main>

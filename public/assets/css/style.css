@@ -96,12 +96,8 @@ li>a:hover {
     max-height: 600px;
 }
 
-.img-change {
-    width: 80%;
-
-    @media (max-width:430px) {
-        width: 90%;
-    }
+.btn:hover {
+    opacity: 80%;
 }
 
 footer {

@@ -20,6 +20,8 @@
         <div class="card shadow mx-auto p-3 my-4">
 
             <h2 class="text-center mt-3">Formulaire d'inscription</h2>
+
+            <p class="text-center mt-2"><i>Afin de déposer et gérer des annonces, vous devez vous inscrire.</i></p>
             <form method="post" class="form-container mx-auto my-4">
 
                 <!-- USERNAME -->
@@ -27,7 +29,7 @@
                     <label for="username" class="form-label">
                         <b>Nom d'utilisateur : </b><span class="text-danger">* <i><?= isset($errors['username']) ? htmlspecialchars($errors['username']) : '' ?></i></span>
                     </label>
-                    <input type="text" name="username" class="form-control" id="username" placeholder="Entrez votre nom d'utilisateur..." value="<?= htmlspecialchars($_POST['username']) ?? "" ?>">
+                    <input type="text" name="username" class="form-control" id="username" placeholder="Entrez votre nom d'utilisateur..." value="<?= htmlspecialchars($_POST['username'] ?? "") ?>">
                 </div>
 
                 <!-- EMAIL -->

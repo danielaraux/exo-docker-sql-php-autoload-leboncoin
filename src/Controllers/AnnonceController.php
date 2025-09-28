@@ -8,6 +8,11 @@ class AnnonceController
 {
     public function create()
     {
+
+        if (!isset($_SESSION['user'])) {
+            header("Location: index.php?url=register");
+        }
+
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $errors = [];
 
@@ -75,7 +80,7 @@ class AnnonceController
                 $objAnnonce = new Annonce();
                 $objAnnonce->createAnnonce($title, $description, $price, $picture, $userId);
 
-                header("Location: index.php?url=annonces");
+                header("Location: index.php?url=home");
                 exit;
             }
         }
@@ -84,15 +89,6 @@ class AnnonceController
         require_once __DIR__ . '/../Views/create.php';
     }
 
-    public function index()
-    {
-        $objAnnonce = new Annonce();
-        $createAnnonce = $objAnnonce->findAll();
-
-        // $annonce[a_picture] qui affiche ma photo
-
-        require_once __DIR__ . '/../Views/annonces.php';
-    }
 
     public function show($id)
     {
@@ -195,7 +191,7 @@ class AnnonceController
                         $newName = uniqid('', true) . '.' . $extension;
                         $picture = $newName;
 
-                        // 🔑 Vérifie que le dossier existe
+                        // Vérifie que le dossier existe
                         if (!is_dir($user_dir)) {
                             mkdir($user_dir, 0755, true);
                         }
