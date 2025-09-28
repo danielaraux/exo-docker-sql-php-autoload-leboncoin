@@ -31,10 +31,10 @@
                     <div class="card col-md-7 w-100 mx-auto border-0">
                         <img
                             src="<?= $annonceInfo['a_picture'] !== "nophoto.jpg"
-                                        ? '/uploads/' . $annonceInfo['u_username'] . '/' . ($annonceInfo['a_picture'])
+                                        ? '/uploads/' . htmlspecialchars($annonceInfo['u_username']) . '/' . htmlspecialchars($annonceInfo['a_picture'])
                                         : '/uploads/nophoto.jpg' ?>"
                             class="img-annonce rounded d-block mx-auto"
-                            alt="Photo de l'annonce <?= ($annonceInfo['a_title']) ?>">
+                            alt="Photo de l'annonce <?= htmlspecialchars($annonceInfo['a_title']) ?>">
 
                     </div>
                     <?php if ($annonceInfo['a_picture'] == "nophoto.jpg") { ?>
@@ -48,7 +48,7 @@
                             <div><i>Formats valides : jpeg, jpg, webp, png.</i></div>
                             <div><i>Taille maximum : 8 Mo.</i></div>
 
-                            <div class="text-danger my-2"><b><i><?= isset($errors['picture']) ? ($errors['picture']) : '' ?></i></b></div>
+                            <div class="text-danger my-2"><b><i><?= isset($errors['picture']) ? htmlspecialchars($errors['picture']) : '' ?></i></b></div>
                         </label>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" name="picture" id="picture">

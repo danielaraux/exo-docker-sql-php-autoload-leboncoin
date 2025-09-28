@@ -31,7 +31,7 @@
                     <label for="email" class="form-label">
                         <b>Adresse email : </b><span class="text-danger">* <i><?= isset($errors['email']) ? htmlspecialchars($errors['email']) : '' ?></i></span>
                     </label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="Entrez votre adresse email..." value="<?= $_POST['email'] ?? "" ?>">
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Entrez votre adresse email..." value="<?= htmlspecialchars($_POST['email'] ?? "") ?>">
                 </div>
 
                 <!-- PASSWORD -->

@@ -28,10 +28,10 @@
                 <div class="card col-md-7 w-100 mx-auto border-0">
                     <img
                         src="<?= $annonce['a_picture'] !== "nophoto.jpg"
-                                    ? '/uploads/' . $annonce['u_username'] . '/' . ($annonce['a_picture'])
+                                    ? '/uploads/' . htmlspecialchars($annonce['u_username']) . '/' . htmlspecialchars($annonce['a_picture'])
                                     : '/uploads/nophoto.jpg' ?>"
                         class="img-annonce rounded d-block mx-auto"
-                        alt="<?= ($annonce['a_title']) ?>">
+                        alt="<?= htmlspecialchars($annonce['a_title']) ?>">
 
                 </div>
                 <?php if ($annonce['a_picture'] == "nophoto.jpg") { ?>
@@ -57,10 +57,10 @@
             <div class="col-md-7">
 
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h3 class="card-title"><?= ($annonce['a_title']) ?></h3>
+                    <h3 class="card-title"><?= htmlspecialchars($annonce['a_title']) ?></h3>
                 </div>
                 <p class="card-text">Date de création : <?= (new DateTime($annonce["a_publication"]))->format('d/m/Y') ?></p>
-                <p class="fw-bold fs-5">Prix : <?= ($annonce['a_price']) ?> €</p>
+                <p class="fw-bold fs-5">Prix : <?= htmlspecialchars($annonce['a_price']) ?> €</p>
 
                 <p class="card-text my-5">
                     <?= nl2br(htmlspecialchars($annonce['a_description'])) ?>

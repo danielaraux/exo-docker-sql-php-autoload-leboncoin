@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -21,21 +17,12 @@
 
     <main class="container my-4">
 
-        <h2 class="mt-5 text-center">Bienvenue <?= $_SESSION['username'] ?> ! Votre compte a bien été crée.</h2>
+        <h2 class="mt-5 text-center">Bienvenue <?= htmlspecialchars($_SESSION['username']) ?> ! Votre compte a bien été crée.</h2>
 
         <div class="text-center mt-5">
 
             <button class="btn"><a href="index.php?url=login" class="text-decoration-none text-light">Connectez-vous !</a></button>
         </div>
-        <!-- <div class="container my-5 ">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
-               
-            </div>
-        </div>
-
-        <div class="d-flex justify-content-end m-3">
-            <a href="#" class="btn btn-primary">Revenir en haut</a>
-        </div> -->
 
     </main>
 

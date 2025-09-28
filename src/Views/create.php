@@ -31,7 +31,7 @@
                     <label for="title" class="form-label">
                         <b>Titre de l'annonce : </b><span class="text-danger">* <i><?= isset($errors['title']) ? htmlspecialchars($errors['title']) : '' ?></i></span>
                     </label>
-                    <input type="text" name="title" class="form-control" id="title" placeholder="Entrez le titre..." value="<?= $_POST['title'] ?? "" ?>">
+                    <input type="text" name="title" class="form-control" id="title" placeholder="Entrez le titre..." value="<?= htmlspecialchars($_POST['title'] ?? "") ?>">
                 </div>
 
                 <!-- Description -->
@@ -39,7 +39,7 @@
                     <label for="description" class="form-label">
                         <b>Description : </b><span class="text-danger">* <i><?= isset($errors['description']) ? htmlspecialchars($errors['description']) : '' ?></i></span>
                     </label>
-                    <textarea class="form-control" name="description" id="description" placeholder="Entrez votre description..." rows="5"><?= $_POST['description'] ?? "" ?></textarea>
+                    <textarea class="form-control" name="description" id="description" placeholder="Entrez votre description..." rows="5"><?= htmlspecialchars($_POST['description'] ?? "") ?></textarea>
                 </div>
 
                 <!-- Prix -->
@@ -48,7 +48,7 @@
                         <b>Prix : (en Euros) </b><span class="text-danger">* <i><?= isset($errors['price']) ? htmlspecialchars($errors['price']) : '' ?></i></span>
                         <i>ex. 1.50 pour 1.50€</i>
                     </label>
-                    <input type="number" name="price" class="form-control" id="price" step="0.01" min="1" placeholder="Entrez le prix..." value="<?= $_POST['price'] ?? "" ?>">
+                    <input type="number" name="price" class="form-control" id="price" step="0.01" min="1" placeholder="Entrez le prix..." value="<?= htmlspecialchars($_POST['price'] ?? "") ?>">
                 </div>
 
                 <!-- Photo -->
