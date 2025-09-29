@@ -11,9 +11,9 @@ $url = $_GET['url'] ?? 'home'; // on défini la variable qui va récupérer l'ur
 $arrayUrl = explode('/', $url); // je transforme l'url en tableau
 $page = $arrayUrl[0] ?? 'home'; // je récupère l'index pour la page
 
-
 $id = $arrayUrl[1] ?? null;
 
+// var_dump($arrayUrl);
 
 // var_dump($_SESSION);
 // vérifier le $_session sur le routeur en edit
@@ -79,9 +79,9 @@ switch ($page) {
                         require_once __DIR__ . "/../src/Views/page404.php";
                         break;
                 }
-                echo 'bah oui';
                 $objectController = new FavorisController();
                 $objectController->index();
+
                 break;
 
         // ajouter un favoris

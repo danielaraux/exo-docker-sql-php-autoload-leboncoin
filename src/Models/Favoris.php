@@ -72,17 +72,17 @@ class Favoris
                 return [];
             }
 
-            // requête SQL pour joindre la colonne a_id de annonces à 
-            $sql = 'SELECT a.* 
-            FROM annonces a
-            INNER JOIN favoris f ON f.annonce_id = a.a_id
-            WHERE f.user_id = :u_id
+            // Requête SQL pour joindre la colonne a_id de annonces à 
+            $sql = 'SELECT a.*
+            FROM annonces AS a
+            INNER JOIN favoris AS f ON f.annonce_id = a.a_id
+            WHERE f.user_id = :userId
             ORDER BY a.a_publication DESC';
 
 
             // On prépare la requête avant de l'exécuter
             $stmt = $pdo->prepare($sql);
-            $stmt->bindValue(':u_id', $userId, PDO::PARAM_INT);
+            $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
             $stmt->execute();
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC);

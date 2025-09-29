@@ -25,6 +25,11 @@
             </div>
         </div>
 
+
+        <div class="my-3">
+            <a href="index.php?url=favoris">Mes Favoris</a>
+        </div>
+
         <div class="my-3">
             <h2>Mes Annonces : </h2>
         </div>

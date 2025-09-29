@@ -34,10 +34,10 @@
 
                 </div>
                 <?php if ($annonce['a_picture'] == "nophoto.jpg") { ?>
-                    <p class="my-2 text-center"><i>Pas de photo ajoutée à l'annonce</i></p>
+                    <p class="my-3 text-center"><i>Pas de photo ajoutée à l'annonce</i></p>
                 <?php } ?>
 
-                <div class="d-flex justify-content-center mt-4">
+                <div class="d-flex justify-content-center mt-1">
                     <?php
                     if (isset($_SESSION['user']) && ($_SESSION['user']['id'] === $annonce['u_id'])) { ?>
                         <!-- Modifier l'annonce -->

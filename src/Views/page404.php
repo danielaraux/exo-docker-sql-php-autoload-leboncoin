@@ -31,7 +31,7 @@
 
             <div class="text-center d-flex align-items-center justify-content-center">
 
-                <button class="btn"><a href="index.php" class="text-light text-decoration-none"><span class="me-2"><i class="bi bi-arrow-left"></i> </span>Retour à l'accueil</a></button>
+                <a href="index.php" class="btn text-light text-decoration-none"><span class="me-2"><i class="bi bi-arrow-left"></i> </span>Retour à l'accueil</a>
             </div>
         </div>
 
