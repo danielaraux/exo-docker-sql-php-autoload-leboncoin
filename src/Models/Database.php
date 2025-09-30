@@ -41,21 +41,53 @@ class Database
 
 
     // UTILISATION DU .ENV POUR LES CREDENTIALS
-    public static function createInstancePDO(): ?PDO
+    // public static function createInstancePDO(): ?PDO
+    // {
+    //     try {
+    //         $pdo = new PDO(
+    //             "mysql:host={$_ENV['DB_HOST']};dbname={$_ENV['DB_NAME']};charset=utf8",
+    //             $_ENV['DB_USER'],
+    //             $_ENV['DB_PASSWORD'],
+    //             [
+    //                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    //                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+    //             ]
+    //         );
+    //         return $pdo;
+    //     } catch (PDOException $e) {
+    //         echo "Erreur de connexion : " . $e->getMessage();
+    //         return null;
+    //     }
+    // }
+
+
+
+    // DATABASE POUR TESTS UNITAIRES
+    public static function createInstancePDO(): PDO|null
     {
+        // Charger le fichier .env
+        $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
+        $dotenv->load();
+        // Variables communes
+        $db_host = $_ENV['DB_HOST'];
+        $db_user = $_ENV['DB_USER'];
+        $db_password = $_ENV['DB_PASS'];
+        // On choisit la base selon APP_ENV
+        $db_name = $_ENV['APP_ENV'] === 'test'
+            ? $_ENV['DB_NAME_TEST']
+            : $_ENV['DB_NAME_DEV'];
         try {
             $pdo = new PDO(
-                "mysql:host={$_ENV['DB_HOST']};dbname={$_ENV['DB_NAME']};charset=utf8",
-                $_ENV['DB_USER'],
-                $_ENV['DB_PASSWORD'],
-                [
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-                ]
+                "mysql:host=$db_host;dbname=$db_name;charset=utf8",
+                $db_user,
+                $db_password
             );
+            // Mode ERRMODE_EXCEPTION uniquement en dev
+            if ($_ENV['APP_ENV'] === 'test') {
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            }
             return $pdo;
         } catch (PDOException $e) {
-            echo "Erreur de connexion : " . $e->getMessage();
             return null;
         }
     }
