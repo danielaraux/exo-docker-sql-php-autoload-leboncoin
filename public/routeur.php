@@ -37,10 +37,6 @@ switch ($page) {
                 break;
 
         case 'welcome':
-                if (!isset($_SESSION['user'])) {
-                        require_once __DIR__ . "/../src/Views/page404.php";
-                        break;
-                }
                 $objectController = new UserController();
                 $objectController->welcome();
                 break;
